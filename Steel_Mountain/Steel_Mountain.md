@@ -22,9 +22,9 @@ Process:
 
 * Clone the PowerSploit suite and upload the PowerUp.ps1 script to the target machine
 
-* In meterpreter shell, "load powershell", "powershell_shell"
+* In meterpreter shell, `load powershell`, `powershell_shell`
 
-* In this new ps shell, run the script and Invoke-AllChecks
+* In this new ps shell, run the script and `Invoke-AllChecks`
 
 * There is one service with a modifiable file and CanRestart true
 
@@ -34,18 +34,18 @@ Process:
 
 * Use msfvenom to create a payload with the same file name as the target executable
 
-* sc stop \<service\>
+* `sc stop <service>`
 
 * upload payload to replace the service executable
 
 * open a shell listener
 
-* sc start \<service\>
+* `sc start <service>`
 
 * I am system!
 
-* Navigate to root flag and write it to console (equivalent of cat) with "type \<file\>"
+* Navigate to root flag and write it to console (equivalent of cat) with `type <file>`
 
-*This Box is also doable without metasploit. There are different exploits using the same CVE. You can use a revshell listener instead of msf. The service is findable manually with powershell -c get-service.*
+*This Box is also doable without metasploit. There are different exploits using the same CVE. You can use a revshell listener instead of msf. The service is findable manually with `powershell -c get-service`.*
 
 ---
