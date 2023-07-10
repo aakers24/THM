@@ -4,7 +4,7 @@
 
 Tags: Linux, Web Exploitation, ssh
 
-Tools: nmap, dirb, chmod, 
+Tools: nmap, dirb, chmod, john / johntheripper / john2ssh, ssh
 
 Process:
 
