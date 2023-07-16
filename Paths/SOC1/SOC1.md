@@ -1,8 +1,4 @@
-<font size=7>SOC 1</font>
-
----
-
-<br/>
+# SOC 1
 
 Tags: Blue Team, Cyber Defense, MITRE, SIEM
 
@@ -11,9 +7,9 @@ Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashin
 Process/Notes:
 
 
-<font size=6>Cyber Defense Frameworks</font>
+## Cyber Defense Frameworks
 
-## Pyramid of Pain
+### Pyramid of Pain
 
 * In ascending order of difficulty for attackers:
 
@@ -49,7 +45,7 @@ Process/Notes:
 
 ---
 
-## Cyber Kill Chain
+### Cyber Kill Chain
 
 * Reconnaissance - Information Gathering
 
@@ -67,13 +63,13 @@ Process/Notes:
 
 ---
 
-## Unified Kill Chain
+### Unified Kill Chain
 
 * A more modern and detailed version of the previous Cyber Kill Chain
 
 ---
 
-## Diamond Model
+### Diamond Model
 
 * Adversary - Attacker, Hacker, Cyber Threat Actor, APT (Advanced Persistent Threat)
 
@@ -121,7 +117,7 @@ Process/Notes:
 
 ---
 
-## MITRE
+### MITRE
 
 * ATT&CK (Adversarial Tactics, Techniques, & Common Knowledge) - Knowledge Base of TTPs from real world
 
@@ -134,12 +130,13 @@ Process/Notes:
 * AEP (ATT&CK Emulation Plans) - Knowledge base of plans to emulate adversarial operations
 
 ---
+---
 
 <br/>
 
-<font size=6>Cyber Threat Intelligence</font>
-
 ## Cyber Threat Intelligence
+
+### Cyber Threat Intelligence
 
 * Strategic Intel: High-level view of threat landscape
 
@@ -167,7 +164,7 @@ Process/Notes:
 
 ---
 
-## Threat Intelligence Tools
+### Threat Intelligence Tools
 
 * UrlScan.io - Website scanning and analysis
 
