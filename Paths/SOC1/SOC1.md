@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, SIEM
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara
 
 Process/Notes:
 
@@ -185,3 +185,59 @@ Process/Notes:
 * Cisco Talos Intelligence - Actionable intelligence, indicator visibility, and protection against threats
 
 ---
+
+### Yara
+
+* Yara is basically a pattern matching tool.
+
+* `yara <rule file>.yar <target file/dir/PID>`
+
+* Rules require a name and a condition. The syntax is method-like (e.g. rule myRule { condition } )
+
+* Satisfied rules will return their rule name and the file that satisfied it
+
+* "any of them", "and", "not", and "or" can be used in the conditions section
+
+* Rule syntax: 
+    ```
+    rule <ruleName> {
+        <keyword>:
+            $<varName1> = "String1"
+            $<varName2> = "String2"
+
+        condition:
+            $<varName1> or $<varName2>
+        }
+    ```
+
+* Some other libraries include Cuckoo Sandbox and Python PE
+
+* LOKI is a FOSS(Free and Open Source Software) IoC scanner which detects based on:
+
+    1. File name IoC check
+    1. Yara rule check
+    1. Hash check
+    1. C2 back connect check
+
+* Other Yara tools include THOR, Fenrir, YAYA, yarGen, and Valhalla
+
+---
+
+### OpenCTI
+
+* OpenCTI is an open source platform that provides storage, analysis, visualization, and presentation of threat campaigns, malware, and IoCs.
+
+---
+
+### MISP
+
+* 
+
+---
+---
+
+<br/>
+
+## Network Security and Traffic Analysis
+
+###
