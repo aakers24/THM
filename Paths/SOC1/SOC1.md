@@ -231,7 +231,9 @@ Process/Notes:
 
 ### MISP
 
-* 
+* MISP is open source and stands for Malware Information Sharing Platform
+
+* It's used for Malware RE, security investigations, intel analysis, and risk and fraud analysis
 
 ---
 ---
@@ -240,4 +242,4 @@ Process/Notes:
 
 ## Network Security and Traffic Analysis
 
-###
+### Traffic Analysis Essentials
