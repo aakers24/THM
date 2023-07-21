@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, SIEM
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort
 
 Process/Notes:
 
@@ -242,4 +242,56 @@ Process/Notes:
 
 ## Network Security and Traffic Analysis
 
-### Traffic Analysis Essentials
+### Snort
+
+* Snort is an open source Network Intrusion Detection and Prevention System (NIDS/NIPS/IPS).
+
+    * Intrusion Detection System (IDS):
+    
+        * Network Intrustion Detection System (NIDS) - Monitors traffic flow of the network and alerts on identified suspicious/malicious traffic.
+
+        * Host-Based Intrustion Detection System (HIDS) - Monitors traffic flow of a system and alerts on identified suspicious/malicious traffic.
+
+    * Intrusion Prevention System (IPS):
+
+        * Network Intrusion Prevention System (NIPS) - Monitors traffic flow of the network and terminates identified malicious traffic.
+
+        * Behavior-based Intrusion Prevention System (Network Behavior Analysis (NBA)) - Same as NIPS but requires a training/baselining period initially to learn to ID traffic.
+
+        * Wireless Intrusion Prevention System (WIPS) - Monitors traffic flow of the wireless network and terminates identified malicious traffic.
+
+        * Host-Based Intrusion Prevention System (HIPS) - Monitors traffic flow of a system and terminates identified malicious traffic.
+
+* Snort uses rules to define malicious network traffic and identify such packets which also allows for the generation of alerts.
+
+* Detection/Prevention Techniques:
+
+    * Signature-Based - Uses rules to identify known patterns of behavior.
+
+    * Behavior-Based - Identifies new patterns of behavior by matching them with old known patterns of behavior.
+
+    * Policy-Based - Compares detected activities with system configs and security policies.
+
+* Snort Rule Syntax is as follows in order from first to last - 
+
+    * Action - Alert, Drop, Reject
+
+    * Protocol - TCP, UDP, ICMP, IP
+
+    * Source IP
+
+    * Source Port
+
+    * Direction - -> (src to dest flow), <> (bidirectional flow), (There is no <- (dest to src) option in Snort)
+
+    * Destination IP
+
+    * Destination Port
+
+    * Options - Msg, Reference, Sid (Snort rule ID), Rev (Revision), Content, Nocase, Fast_pattern, ID, Flags, Dsize, Sameip
+
+    * `alert <action> <src ip> <src port> <->, <>> <dest IP> <dest port> (<options>)`
+
+    * E.g. `alert icmp 2.2.2.2 any <> 1.1.1.1 any (msg:"ICMP Packet!";reference:CVE-XXXX;sid:10100101;rev:1;)`
+
+* Your created rules should be in your local.rules file
