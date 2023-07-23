@@ -295,3 +295,15 @@ Process/Notes:
     * E.g. `alert icmp 2.2.2.2 any <> 1.1.1.1 any (msg:"ICMP Packet!";reference:CVE-XXXX;sid:10100101;rev:1;)`
 
 * Your created rules should be in your local.rules file
+
+---
+
+### NetworkMiner
+
+* NetworkMiner is an open source Network Forensic Analysis Tool (NFAT) that can be used as a passive sniffer/pcap tool without putting any traffic on the network as well as parse PCAPs. It has a GUI that organizes all of the data and does things like OS fingerprinting.
+
+* It shouldn't be used as a primary tool, but instead a more passive, high-level overview tool that can be easily used because of the GUI.
+
+* *A personal note: It looks like they're running NetworkMiner windows files using Mono(JIT Compiler)*
+
+---
