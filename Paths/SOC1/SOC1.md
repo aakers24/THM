@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, SIEM
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek
 
 Process/Notes:
 
@@ -305,5 +305,17 @@ Process/Notes:
 * It shouldn't be used as a primary tool, but instead a more passive, high-level overview tool that can be easily used because of the GUI.
 
 * *A personal note: It looks like they're running NetworkMiner windows files using Mono(JIT Compiler)*
+
+---
+
+### Zeek
+
+* Zeek was formerly named Bro and it is a platform for Network Security Monitoring (NSM) which is flexible, open-source, and passive. It also does some things outside of security such as performance measurements and troubleshooting.
+
+*There is a fine distinction being made here that Network Monitoring is more than just Network Security Monitoring.*
+
+* A major difference that sets Zeek apart from other NSMs (Network Security Monitor(s)) is that it allows for the creation of a very wide variety of log types and is event-based rather than other paradigms such as signature-based. *Zeek also does support signatures though.*
+
+* Zeek generates well organized log files. These can be viewed and analyzed manually or run through other tools such as ELK or Splunk. There is also a tool called zeek-cut which can aid in manual analysis.
 
 ---
