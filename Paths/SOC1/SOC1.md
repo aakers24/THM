@@ -318,4 +318,6 @@ Process/Notes:
 
 * Zeek generates well organized log files. These can be viewed and analyzed manually or run through other tools such as ELK or Splunk. There is also a tool called zeek-cut which can aid in manual analysis.
 
+* Zeek supports `.zeek` scripts and has a package manager to download modules with that is called by `zkg` and the modules can be called like scripts or with their package name.
+
 ---
