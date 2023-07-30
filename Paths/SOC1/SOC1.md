@@ -316,8 +316,20 @@ Process/Notes:
 
 * A major difference that sets Zeek apart from other NSMs (Network Security Monitor(s)) is that it allows for the creation of a very wide variety of log types and is event-based rather than other paradigms such as signature-based. *Zeek also does support signatures though.*
 
-* Zeek generates well organized log files. These can be viewed and analyzed manually or run through other tools such as ELK or Splunk. There is also a tool called zeek-cut which can aid in manual analysis.
+* Zeek generates well organized log files. These can be viewed and analyzed manually or run through other tools such as ELK or Splunk. There is also a tool called `zeek-cut` which can aid in manual analysis.
 
 * Zeek supports `.zeek` scripts and has a package manager to download modules with that is called by `zkg` and the modules can be called like scripts or with their package name.
+
+---
+
+### Brim
+
+* Brim is yet another pcap analysis and logging tool. It's open source and has a focus on search and analytics.
+
+* Brim uses the Zeek log processing format, supports Zeek signatures, Suricata rules, and can analyze pcaps and logs with the Zeek structure.
+
+* Brim, Wireshark, and Zeek have some overlapping features, but are best used together. Each one has a place where it stands out in the process. Common best practice includes using Wireshark for medium-sized pcaps, using Zeek for creating logs and correlating events, and processing multiple logs in Brim.
+
+* Suricata is an open source threat detection engine that can act as a rule-based IDS/IPS. It is similar to Snort and can use the same signatures.
 
 ---
