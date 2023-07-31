@@ -1,8 +1,8 @@
 # SOC 1
 
-Tags: Blue Team, Cyber Defense, MITRE, SIEM
+Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, Windows, Linux, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark
 
 Process/Notes:
 
@@ -331,5 +331,39 @@ Process/Notes:
 * Brim, Wireshark, and Zeek have some overlapping features, but are best used together. Each one has a place where it stands out in the process. Common best practice includes using Wireshark for medium-sized pcaps, using Zeek for creating logs and correlating events, and processing multiple logs in Brim.
 
 * Suricata is an open source threat detection engine that can act as a rule-based IDS/IPS. It is similar to Snort and can use the same signatures.
+
+---
+
+### Wireshark
+
+* Wireshark is an open-source, cross-platform, tools for sniffing and analyzing live network traffic as well as creating and inspecting pcaps.
+
+* *To satiate my own curiosity I wanted to know what a pcapng file was because I've seen things with ng appended before including this file extension and didn't know what it meant. Apparently the ng means next generation.*
+
+* Packet or Protocol Dissection is investigating packet details by decoding available protocols and fields.
+
+* DHCP (Dynamic Host Configuration Protocol) is resposible for managing automatic IP address and required communication parameters.
+
+* NetBIOS (Network BIOS - Network Basic Input/Output System) is resposible for allowing applications on different hosts to communicate. NBNS (NetBIOS Name Service) is the abbreviation in Wireshark.
+
+* Kerberos is the default authentication service for Windows domains and is responsible for service requests between two or more computers over the untrusted network. Its goal is to provide secure identity.
+
+* ICMP (Internet Control Message Protocol) was made to diagnose and report network issues and is used in reporting and testing. It is often trusted and is used for DoS attacks and data exfiltration/tunneling by way of the addition data payload it can transfer.
+
+    * Large volumes or packet sizes, especially after a security breach, are IoCs. A way around the size issue for attackers is to create custom packets only containing the usual 64 bytes.
+
+    * The tunnelled data is often formatted to the TCP, HTTP, or SSH protocols.
+
+* DNS (Domain Name System) is the system which maps IPs to domain names. As with ICMP it is often trusted and used for data exfiltration/tunneling.
+
+    * DNS also has IoCs such as unusually high volumes and lengths, especially after a security breach.
+
+    * The concept is that a domain is configured as a C2 channel and DNS queries are sent to this server. These queries are crafted as subdomain queries, but the subdomains are actually commands or data being encoded into the queries.<br/>`<command/data>.<C2server>.com`<br/>The commands are sent as responses.
+
+*I already knew most if not all of this, but for some reason some things about ICMP and DNS wouldn't stick in my head like the SYN, ACK, RST of TCP and things like UDP's one-wayness, etc. Hopefully noting these things down help me remember more clearly.*
+
+* http2 is https and you need to add the key to wireshark to view the traffic.
+
+* In "tools" you can search for plaintext credentials as well as generate firewall rules.
 
 ---
