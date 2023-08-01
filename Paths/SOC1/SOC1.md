@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, Windows, Linux, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery
 
 Process/Notes:
 
@@ -365,5 +365,50 @@ Process/Notes:
 * http2 is https and you need to add the key to wireshark to view the traffic.
 
 * In "tools" you can search for plaintext credentials as well as generate firewall rules.
+
+---
+---
+
+<br/>
+
+## Endpoint Security Monitoring
+
+### Intro to Endpoint Security
+
+* Windows logs are stored in .evt/.evtx files which are propriatary binary formats. They can be converted to XML using the Windows API. The files are normally stored in "C:\Windows\System32\winevt\Logs".
+
+* The ways to view these logs include:
+
+    * `Event Viewer` - GUI
+
+    * `Wevtutil.exe` - cli
+
+    * `Get-WinEvent` - Powershell cmdlet
+
+* `Sysmon` is also a tool used for monitoring and logging events on windows and is part of the SysInternals suite.
+
+* `OSQuery` by Facebook is an open-source tool that uses SQL syntax to query endpoints including Windows, Linux, Mac, and FreeBSD.
+
+* `Wazuh` is an open-source, scalable, and extensive EDR tool which runs on a manager/agent paradigm or model.
+
+* An Endpoint Detection and Response (EDR) tool is an application that monitors devices for IoCs through various means including vulnerability auditing, visualizing collected data, recording normal operational behavior, and proactive monitoring of things like logins, brute-force attacks, and privesc.
+
+---
+
+### Core Windows Processes
+
+* System Idle Process (0) > System (PID 4, Session 0) > smss.exe (Session 0, 2 instances- parent & child. child self-terminates after session creation)
+
+* smss.exe > csrss.exe (Session 0) && wininit.exe (Session 0, user: system, 1 instance)
+
+* smss.exe > csrss.exe (Session 1) && winlogon.exe (Session 1, user: system, 1 instance regularly but more for additional logons/sessions)
+
+* wininit.exe > services.exe (Session 0, user: system, 1 instance) > svchost.exe (Session 0, user: system, bin path called with -k)
+
+* wininit.exe > lsass.exe (Session 0, user: system, 1 instance)
+
+* winlogon.exe > userinit.exe (launches value in "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ShellPrograms" and/or explorer.exe then exits) > explorer.exe (Session 1+, 1 instance but more for additional interactive logons/sessions, user: user)
+
+*Session 0 is an isolated session for the OS.*
 
 ---
