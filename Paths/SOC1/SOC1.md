@@ -412,3 +412,55 @@ Process/Notes:
 *Session 0 is an isolated session for the OS.*
 
 ---
+
+### Sysinternals
+
+*Some things in this section may get skipped as I already have the Sysinternals suite installed and have some experience using it.*
+
+* `Sysinternals Live` lets you use the Sysinternals tools from the web instead of downloading them.
+
+    * You can run a tool by entering `live.sysinternals.com/<tool>` or `\\live.sysinternals.com\tools\<tool>` into windows explorer or command prompt respectively.
+
+    * Installing and running the WebDAV client on the machine allows the Live functionality. The WebDAV protocol allows remote access to the machine by way of the WebDAV share.
+
+    * Network Discovery also needs to be enabled.
+
+* Tools highlighted:
+
+    * Sigcheck - CLI utility tool that displays some file information and offers some interoperability with VirusTotal
+
+    * Streams - Allows you to view Alternate Data Streams (ADS)
+    
+        * NTFS allows applications the ability to create alternate streams of information. By default all data is stored in a file's main unnamed data stream. Using the `<file>:<stream>` syntax you can read and write to alternates. Every file has at least one data stream ($DATA), and by default this is the only one displayed to users.
+
+        * <cmd> <File>:<Stream> - E.g. notepad File.exe:hiddenFile.txt
+
+    * SDelete (Secure Delete) - CLI tool to delete one or more files/directories or cleanse the free space on a logical disk.
+
+        * It uses 3 passes. The first pass writes a zero and verifies the write. The second pass writes and verifies a 1. The third writes and verifies a random character.
+
+    * TCPView - Shows detailed listing of all TCP and UDP endpoints on the system.
+
+    * Autoruns - A utility that shows what automatically runs on the system including on boot, on logon, or on an application start.
+
+    * ProcDump - CLI util primarily purposed for monitoring CPU usage and generating crash dumps for applications. This can also be done through Process Explorer.
+
+    * Process Explorer (ProcExp) - Provides detailed information for all processes running on the system.
+
+    * Process Monitor (ProcMon) - A monitoring tool that shows detailed, real-time information on the FS (file system), registry, and processes/threads activities. It is a continuation of two previous sysinternals tools filemon and regmon.
+
+    * PsExec - A lightweight tool that allows execution of processes on other systems, including full interactivity for console applications. It is a replacement for Telnet.
+
+    * Sysmon (System Monitor) - A windows system service and device driver that is persistent across reboots that monitors and logs system activity to the Windows event log.
+
+    * WinObj - A 32-bit Windows NT program that accesses and displays information on the NT Object Manager's namespace.
+
+    * BgInfo - A tool to automatically display relevant information about the computer.
+
+    * RegJump - Opens regedit to a given registry path.
+
+    * Strings - Scans the given file for UNICODE or ASCII strings. By default strings must be 3 or more characters.
+
+        *On windows the `FindStr` command is a good replacement for the unix `grep` command*
+
+---
