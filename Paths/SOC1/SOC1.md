@@ -464,3 +464,41 @@ Process/Notes:
         *On windows the `FindStr` command is a good replacement for the unix `grep` command*
 
 ---
+
+### Windows Event Logs
+
+*A note: On unix/linux logs are in text format and by default stored in /var/log/*
+
+* The types of event logs on windows include:
+
+    * System Logs - Records events relating to the OS including hardware, drivers, and system/device changes.
+
+    * Security Logs - Records security events primarily including log on/off.
+
+    * Application Logs - Records events related to the applications installed and/or running on the system.
+
+    * Directory Service Logs - Records events related to active directory including changes and activities and are mainly logged on the Domain Controllers.
+
+    * File Replication Service Logs - Records events related to Windows Servers during the sharing of group policies and logon scripts to domain controllers, from where they can be accessed by the users through the client servers.
+
+    * DNS Event Logs - Records events related to DNS and DNS servers use these logs.
+
+    * Custom Logs - Records events related to application that require custom data storage. These are partially dictated by the applications themselves based on the application's specific needs or operations.
+
+* There are 5 event types in windows logs which include:
+
+    * Error - Indicates significant problem which could be a loss of data or function.
+
+    * Warning - Indicates a less significant problem than an Error, and this problem may indicate or lead to a future failure or loss of data.
+
+    * Information - Indicates an event which resulted in a successful operation.
+
+    * Success Audit - Indicates that a audited security access attempt was successful. E.g. successful user logon.
+
+    * Failure Audit - Indicates that a audited security access attempt failed. E.g. a user tries to access a drive and fails.
+
+* XPath is short for XML Path Language and it is meant to provide a standard syntax and functionality for addressing and manipulating parts of XML documents.
+
+    * wevtutil.exe and Get-WinEvent both support XPath queries.
+
+---
