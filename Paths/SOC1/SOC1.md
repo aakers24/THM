@@ -435,6 +435,8 @@ Process/Notes:
 
         * <cmd> <File>:<Stream> - E.g. notepad File.exe:hiddenFile.txt
 
+        *Linux/unix has many filesystems that support Extended Attributes (EA, xattr) which are basically the same thing as ADSs, though often very limited in size.*
+
     * SDelete (Secure Delete) - CLI tool to delete one or more files/directories or cleanse the free space on a logical disk.
 
         * It uses 3 passes. The first pass writes a zero and verifies the write. The second pass writes and verifies a 1. The third writes and verifies a random character.
@@ -500,5 +502,17 @@ Process/Notes:
 * XPath is short for XML Path Language and it is meant to provide a standard syntax and functionality for addressing and manipulating parts of XML documents.
 
     * wevtutil.exe and Get-WinEvent both support XPath queries.
+
+---
+
+### Sysmon
+
+* System Monitor, or Sysmon, is a tool in the Sysinternals Suite which is made for monitoring and logging Windows events. It is like a more detailed Windows Event Logs.
+
+* Sysmon events are stored in "Applications and Services Logs/Microsoft/Windows/Sysmon/Operational".
+
+* Sysmon can make use of a config file which you can make yourself or download a premade config.
+
+* Sysmon monitoring and loggin in conjuction with some of the previously mentioned log inspection tools/methods such as Get-WinEvent and XPath can give very granular control and insight on the Windows machine.
 
 ---
