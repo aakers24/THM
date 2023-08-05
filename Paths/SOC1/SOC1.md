@@ -516,3 +516,11 @@ Process/Notes:
 * Sysmon monitoring and loggin in conjuction with some of the previously mentioned log inspection tools/methods such as Get-WinEvent and XPath can give very granular control and insight on the Windows machine.
 
 ---
+
+### OSQuery
+
+* OSQuery is an open-source and cross-platform tool that represents the operating system as a relational database, allowing queries using SQL syntax.
+
+* OSQuery interactive mode is called by using `osqueryi`. Once run, `.help` runs the help command, as meta commands have a period prepended.
+
+---
