@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, Windows, Linux, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh
 
 Process/Notes:
 
@@ -522,5 +522,29 @@ Process/Notes:
 * OSQuery is an open-source and cross-platform tool that represents the operating system as a relational database, allowing queries using SQL syntax.
 
 * OSQuery interactive mode is called by using `osqueryi`. Once run, `.help` runs the help command, as meta commands have a period prepended.
+
+---
+
+### Wazuh
+
+* Wazuh is a free, open-source, scalable, and extensible EDR system that uses a management-agent paradigm.
+
+* The Wazuh manager is installed on/as a server and the agent is installed on the endpoints that are being monitored. The Agents can be grouped, and are provided an address (Domain or IP) to send their logs to (the manager).
+
+* Wazuh Agent vuln scans take the installed applications and their version numbers and send this information to the manager which has a database of CVEs that it compares with to check for vulnerabilities. This scan is performed on install and requires an interval be set at which the scan will run.
+
+* The Agents can also be set to check their configuration against a ruleset for compliance. This can be checked against frameworks/standards such as MITRE and NIST. This is also run on install by default.
+
+* As previously noted, the Wazuh agents collects logs and sends those logs to their manager. This works on all operating systems (obviously). Wazuh can be configured to grab and send any log. E.g.:
+
+    * On Windows, Sysmon can be configured, then Wazuh can be configured to send those Sysmon logs, and the Wazuh manager can be configured to visualize this data.
+
+    * On Linux, just as any system there are numerous logs, but an example is auditd. This can be configured in many ways and then the log can be collected using the Wazuh Log Collector, and sent to the manager.
+
+* Wazuh has premade rules for log analysis, but custom rules are made using XML.
+
+* Wazuh also features a web API. The client must authenticate and then use a token given by the manager. Once this is done, HTTP requests can be sent to the manager and can be used to interact with it. There is also an API console which is less flexible and powerful than the CLI, but allows use with a GUI.
+
+* Wazuh can also create reports which give a summary of events on an agent. These can be easily generated and viewed through the manager server.
 
 ---
