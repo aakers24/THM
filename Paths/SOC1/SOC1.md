@@ -548,3 +548,34 @@ Process/Notes:
 * Wazuh can also create reports which give a summary of events on an agent. These can be easily generated and viewed through the manager server.
 
 ---
+---
+
+<br/>
+
+## Security Information and Event Management
+
+### Introduction to SIEM
+
+* Security Information and Event Management (SIEM) tools collect data from endpoints across a network, store them in a central location, and performs correlation and analysis on them.
+
+    * SIEMs use rules to analyze the ingested data. Once a detection happens or a set threshold is crossed, the SIEM creates an alert.
+
+* Logs are generally split into host and network focused logs.
+
+* One of the main benefits of SIEM is that it takes logs from all of the endpoints/network *and* allows for correlation of the events, searching all of the logs, and fast investigation/response to incidents. This cuts down on the enormous amount of work/time that goes into managing a network and its security.
+
+* The logs collected on endpoints (e.g. Windows Event Viewer logs, Linux /var/log/, Webserver Logs, etc.) are ingested by the SIEM system. Common Log Ingestion techniques include:
+
+    * Agent - A lightweight tool that is part of the SIEM system installed on the endpoint that captures the logs and sends them to the SIEM server. (In Splunk this is refered to as the Forwarder)
+
+    * Syslog - This is a protocol in which data is collected in real-time and sent to the central locale.
+
+    * Manual Upload - Title explains this method. Data is ingested offline, then once it is ingested and normalized it can be analyzed.
+
+    * Port-Forwarding - SIEMs can listen on a port. Then the endpoints forward the data to the SIEM server's listening port.
+
+* Correlation rules are the rules used when analyzing ingested data. These are logical statements correlation to certain events. E.g. login attempts in a set period of time or "If the log is windows and event ID is <EventID>, trigger an alert for <Event>". *Basically just what you'd think based on previous "rules" discussed in the path.*
+
+* Rules often need to be tuned and are subject to company policies. Alerts that aren't false positives are investigated by the SOC or equivalent.
+
+---
