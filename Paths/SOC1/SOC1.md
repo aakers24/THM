@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, Windows, Linux, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana
 
 Process/Notes:
 
@@ -577,5 +577,29 @@ Process/Notes:
 * Correlation rules are the rules used when analyzing ingested data. These are logical statements correlation to certain events. E.g. login attempts in a set period of time or "If the log is windows and event ID is <EventID>, trigger an alert for <Event>". *Basically just what you'd think based on previous "rules" discussed in the path.*
 
 * Rules often need to be tuned and are subject to company policies. Alerts that aren't false positives are investigated by the SOC or equivalent.
+
+---
+
+### ELK 101
+
+* ELK is an open-source tech stack used as a SIEM solution consisting of Elasticsearch, Logstash, and Kibana.
+
+    * Elasticsearch is an open-source search and analytics engine. It is text-based and stores documents in JSON format. It supports RESTful API interaction.
+
+    * Logstash is an open-source server-side data processing pipeline. It ingests data from multiple sources simultaneously, transforms it, and sends it to a destination such as a "stash" like Elasticsearch.
+
+        * The Logstash config file is split into 3 parts.
+
+            * Input - The source of the data to be ingested.
+
+            * Filter - Options used to normalize the ingested information.
+
+            * Output - Where the filtered information is sent.
+
+    * Kibana is an open-source, web-based data visualization dashboard for Elasticsearch.
+
+    * Beats is an open-source host-based agent that is a Data-shipper which is used to transfer data from endpoints to Elasticsearch. 
+
+* Kibana Query Language (KQL) is a query language used to search ingested information in Elasticsearch. Lucene Query Language is also supported.
 
 ---
