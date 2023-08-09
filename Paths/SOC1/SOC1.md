@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, Windows, Linux, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk
 
 Process/Notes:
 
@@ -164,6 +164,18 @@ Process/Notes:
 
 ---
 
+### *The Incident Response Lifecycle*
+
+1. Preparation - Readiness against attack. This includes documentation of requirements, definition of policies, inclusion and deployment of security tools, and training.
+
+1. Detection & Analysis - The process of detecting and analysing events that qualify as incidents. This includes getting alerts from tools, investigation into alerts, and hunting for unknown threats.
+
+1. Containment, Eradication, & Recovery - Preventing the spread of an incident and securing the system/network. This includes infected host isolation, removing infection artifacts, and regaining control.
+
+1. Post-Incident Activity - Reflection and evaluation of security posture. This includes understanding the cause of the breach, ameliorating this cause as well as other vulnerabilities, creation of rules and policies which help detect or prevent a similar incident, and further training. This blends back into Preparation and the cycle continues.
+
+---
+
 ### Threat Intelligence Tools
 
 * UrlScan.io - Website scanning and analysis
@@ -183,6 +195,8 @@ Process/Notes:
 * PhishTool - Email analysis
 
 * Cisco Talos Intelligence - Actionable intelligence, indicator visibility, and protection against threats
+
+* VirusTotal(.com) - Massive database with information on malware, IPs, etc.
 
 ---
 
@@ -601,5 +615,19 @@ Process/Notes:
     * Beats is an open-source host-based agent that is a Data-shipper which is used to transfer data from endpoints to Elasticsearch. 
 
 * Kibana Query Language (KQL) is a query language used to search ingested information in Elasticsearch. Lucene Query Language is also supported.
+
+---
+
+### Splunk
+
+* Splunk is one of the industry leaders in SIEMs. It is a paid product and is not open-source.
+
+* It is comprised of three main components which are the Forwarder, Indexer, and Search Head.
+
+    * Forwarder - Lightweight agent installed on endpoints which collects data and sends it to the Splunk instance. It is analogous to the previously mentioned SIEM agents.
+
+    * Indexer - Main data processor of Splunk which takes data from Forwarders, normalizes, and stores them for search and analysis.
+
+    * Search Head - Location in the Splunk App which allows for searching information processed by the indexer. It provides a search feature as well as use of Splunk Search Processing Language (SSPL). Requests are sent to the indexer which returns results.
 
 ---
