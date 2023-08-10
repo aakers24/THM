@@ -1,8 +1,8 @@
 # SOC 1
 
-Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, Windows, Linux, Phishing, Social Engineering
+Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, DFIR, Windows, Linux, Malware Analysis, Virtual Machine, Sandbox, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor
 
 Process/Notes:
 
@@ -161,18 +161,6 @@ Process/Notes:
     * Feedback - Incorporation of inputs from relavent parties
 
 * CTI Standards and Frameworks - MITRE ATT&CK, TAXII, STIX, Cyber Kill Chain, Diamond Model
-
----
-
-### *The Incident Response Lifecycle*
-
-1. Preparation - Readiness against attack. This includes documentation of requirements, definition of policies, inclusion and deployment of security tools, and training.
-
-1. Detection & Analysis - The process of detecting and analysing events that qualify as incidents. This includes getting alerts from tools, investigation into alerts, and hunting for unknown threats.
-
-1. Containment, Eradication, & Recovery - Preventing the spread of an incident and securing the system/network. This includes infected host isolation, removing infection artifacts, and regaining control.
-
-1. Post-Incident Activity - Reflection and evaluation of security posture. This includes understanding the cause of the breach, ameliorating this cause as well as other vulnerabilities, creation of rules and policies which help detect or prevent a similar incident, and further training. This blends back into Preparation and the cycle continues.
 
 ---
 
@@ -629,5 +617,84 @@ Process/Notes:
     * Indexer - Main data processor of Splunk which takes data from Forwarders, normalizes, and stores them for search and analysis.
 
     * Search Head - Location in the Splunk App which allows for searching information processed by the indexer. It provides a search feature as well as use of Splunk Search Processing Language (SSPL). Requests are sent to the indexer which returns results.
+
+---
+---
+
+<br/>
+
+## Digital Forensics and Incident Response
+
+### DFIR Introduction
+
+* Digital Forensics and Incident Reponse (DFIR) is an essential part of Cybersecurity because there will always be a threat of an attack succeeding and therefore preparation for such an event must always be maintained; in the event of any sort of successful attack that isn't stopped by primary defenses, the defenders need to be technically and mentally prepared.
+
+    * DFIR practices include collection of digital forensic artifacts for purposes including identifying evidence of the attack, determining the extent to which the assets/environment have been compromised, and restoring the environment to a fully secure and functional state as it was before the event.
+
+    * DFIR also has a number of positive side-effects including:
+    
+        * Completely removing the attacker and their access to the environment/assets.
+
+        * Improving future security of the environment and assets.
+
+        * Information gathering and reporting.
+
+            * Communication of information to relavent non-technical parties.
+
+            * Communication of information to the Cybersecurity community.
+
+    * Though they go together in concept and practice, DFIR is typically split up into the two fields which the name suggests- Forensics and Response.
+
+* DFIR core concepts include:
+
+    * Artifacts - Evidence left behind on a system.
+
+    * Maintenance of the integrity of evidence -
+
+        * Evidence Preservation -
+
+            * Collected evidence is immediately write-protected.
+
+            * Subsequently, a copy of the write-protected evidence is made and used for analysis.
+
+        * Chain of Custody - 
+
+            * Evidence is kept in secure custody. Anyone unqualified and apart from the investigation is not to take possession of the evidence; violation of this contaminates the Chain of Custody.
+
+        * Order of Volatility - 
+
+            * Evidence comes in varying degrees of volatility; some evidence will degrade or become unusable and must be processed before this happens. It is important to follow the order of volatility when prioritizing the order in which evidence is at least initially processed.
+
+    * Timeline Creation -
+
+        * Once evidence has been collected and processed without compromising it's integrity, the information extrapolated is used for many things such as analysis and reporting. One tool/deliverable is a timeline of events which plots all of the actions and evidence chronologically.
+
+* Some common DFIR tools include:
+
+    * Eric Zimmerman's tools (EZ Tools) - A security researcher wrote some open-source tools to perform forensic analysis on Windows systems.
+
+        * KAPE (Kroll Artifact Parser and Extractor) - Free and written by Eric Zimmerman, it automates parsing/collection of artifacts.
+
+    * Autopsy - Open-source platform for forensics which aids in data analysis.
+
+    * Volatility - Open-source tool for Windows and Linux that aids in memory analysis of memory captures.
+
+    * Redline - Free tool by FireEye that gathers forensic data from a system and aids with collected information.
+
+    * Velociraptor - An open-source tool for endpoint-monitoring and DFIR.
+
+---
+
+### *The Incident Response Lifecycle*
+
+* As defined by NIST. (Incident Handler's handbook by SANS also has a definition that is basically the same but written differently which allows it to be abbreviated as PICERL)
+
+1. Preparation - Readiness against attack. This includes documentation of requirements, definition of policies, inclusion and deployment of security tools, and training.
+
+1. Detection & Analysis - The process of detecting and analysing events that qualify as incidents. This includes getting alerts from tools, investigation into alerts, and hunting for unknown threats.
+
+1. Containment, Eradication, & Recovery - Preventing the spread of an incident and securing the system/network. This includes infected host isolation, removing infection artifacts, and regaining control.
+
+1. Post-Incident Activity - Reflection and evaluation of security posture. This includes understanding the cause of the breach, ameliorating this cause as well as other vulnerabilities, creation of rules and policies which help detect or prevent a similar incident, and further training. This blends back into Preparation and the cycle continues.
 
 ---
