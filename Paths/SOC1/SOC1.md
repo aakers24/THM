@@ -1,8 +1,8 @@
 # SOC 1
 
-Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, DFIR, Windows, Linux, Malware Analysis, Virtual Machine, Sandbox, Phishing, Social Engineering
+Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, DFIR, Windows, Registry, Linux, Malware Analysis, Virtual Machine, Sandbox, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor, RegEdit
 
 Process/Notes:
 
@@ -698,3 +698,199 @@ Process/Notes:
 1. Post-Incident Activity - Reflection and evaluation of security posture. This includes understanding the cause of the breach, ameliorating this cause as well as other vulnerabilities, creation of rules and policies which help detect or prevent a similar incident, and further training. This blends back into Preparation and the cycle continues.
 
 ---
+
+### Windows Forensics
+
+#### Windows Registry
+
+* The Windows Registry is a database that hold the system's configuration data including information about the hardware, software, and users/accounts.
+
+    * The Registry follows the key-value paradigm. A Registry Hive is a group of Keys, subkeys, and values stored in a single file on the disk.
+
+    * Windows systems have 5 root keys - 
+
+        * HKEY_CURRENT_USER (HKCU) - Root config information for the user currently logged on. A subkey of HKU.
+
+        * HKEY_USERS (HKU) - Stores root config info for all actively loaded user profiles on the system.
+
+        * HKEY_LOCAL_MACHINE (HKLM) - Root config info for the system itself.
+
+        * HKEY_CLASSES_ROOT (HKCR) - Contains info that ensures windows explorer opens the correct programs. A subkey of HKLM\Software. This information is stored in HKLM\Software\Classes for the system config, but the information stored in HKCU\Software\Classes is essentially a modifiable config that will supersede the system config for that user. The HKCR key gives a merged view of these sources.
+
+        * HKEY_CURRENT_CONFIG (HKCC) - Contains hardware profile information. Info is used by local computer at startup.
+
+        *HKEY stands for Handle to registry KEY*
+
+* The Registry Editor `RegEdit (regedit.exe)` is the inbuilt tool for viewing and modifying the registry through a GUI.
+
+* If you don't have access to RegEdit for any reason, such as only having access to the disk or cli, it is necessary to know where the registry hives are located. Generally they can be found in "C:\Windows\System32\Config". Some of these files will be hidden.
+
+    * "C:\Windows\System32\Config" contains -
+
+        (Here "-" is read "mounted at")
+
+        * DEFAULT - HKU\DEFAULT
+
+        * SAM - HKLM\SAM
+
+        * SECURITY - HKLM\Security
+
+        * SOFTWARE - HKLM\Software
+
+        * SYSTEM - HKLM\System
+
+    * On Win7 and newer, "C:\Users\\\<User>" contains -
+
+        (Here "-" is read "mounted at")
+
+        * NTUSER.DAT - HKCU
+
+        * USRCLASS.DAT - HKCU\Software\CLASSES
+
+    * The AmCache hive, which stores information about the system's recently run programs, can be found at "C:\Windows\AppCompat\Programs\Amcache.hve"
+
+* Registry transaction logs are essentially a changelog of the registry hive. Windows often uses these when writing data to hives, thus they can contain data not present yet in the hive itself. Each hive's transaction log is stored as a ".LOG" file in the same directory and with the same name as the hive.
+
+* Registry backups are copies of the Sys32\config hives and are stored in "C:\Windows\System32\Config\RegBack". They are generally copied every 10 days.
+
+#### Windows Registry Forensics
+
+* In accordance with previous section notes, when performing forensic investigation it is generally best practice to image the system or make a copy of the data to be examined and perform forensics on the copy. This process is called data acquisition.
+
+    * A copy of the registry can be more complicated than a simple copy of the files due to the restricted nature of the files/locations such as "%WINDIR%\System32\Config". There are methodologies, techniques, and tools to ameliorate this problem.
+
+    * Some helpful tools for data extraction include -
+
+        * KAPE - A primarily CLI live data acquisition and analysis tool that comes with a GUI whose purpose is to acquire forensic artifacts including registry data.
+
+        * Autopsy - A tool for extracting data from live systems or disk images.
+
+        * FTK Imager - Another tool for extracting data from live systems or disk images.
+
+    * Some helpful tools for viewing extracted data include - 
+
+        (RegEdit isn't applicable because it must be run on a live system)
+
+        * Registry Viewer - Similar GUI to RegEdit.
+
+        * Zimmerman's Registry Explorer - Excellent tool for viewing offline registry data.
+
+        * RegRipper - Creates reports based on registry hive inputs.
+
+* Some useful information that will be common points of interest include -
+
+    * OS Version - SOFTWARE\Microsoft\Windows NT\CurrentVersion
+
+    * Control Sets (Hives with system startup config for the machine) -
+
+        * Generally there are 2 in SYSTEM - ControlSet001 contains the control set the machine booted with. ControlSet002 contains the last known good config.
+
+            * SYSTEM\ControlSet001
+
+            * SYSTEM\ControlSet002
+
+        * There is a volatile control set while the machine is live called CurrentControlSet stored in HKLM\SYSTEM\CurrentControlSet. This is generally the most accurate information. Which control set is being used can be found in SYSTEM\Select\Current and the last known good control set can be found in SYSTEM\Select\LastKnownGood.
+
+    * Computer Name - SYSTEM\\\<CurrentControlSet>\Control\ComputerName\ComputerName
+
+    * Time Zone Info - SYSTEM\\\<CurrentControlSet>\Control\TimeZoneInformation
+
+    * Network Interfaces - SYSTEM\\\<CurrentControlSet>\Services\Tcpip\Parameters\Interfaces
+
+        * Past Networks -
+
+            * SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Managed
+
+            * SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
+
+    * Autostart Programs - 
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Run
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\RunOnce
+
+        * SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+
+        * SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer\Run
+
+    * Services - SYSTEM\\\<CurrentControlSet>\Services
+
+        * Services with the start regkey set to 0x02 run at startup
+
+    * SAM hive / User info - SAM\Domains\Account\Users
+
+    * Windows stores a list of each user's recently opened files - NUTSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs
+
+        * This is also filtered by filetype - E.g. NUTSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\RecentDocs\.txt
+
+    * Recent Microsoft Office files -
+
+        * NTUSER.DAT\Software\Microsoft\Office\\\<Version>\\\<Program>
+
+        * For office 365 - NTUSER.DAT\Software\Microsoft\Office\\\<Version>\UserMRU\LiveID_<User's live ID>\FileMRU
+
+    * Windows ShellBags (The preferences of layouts and properties for when the Windows "Shell" opens a folder) and their most recently used files/folders -
+
+        * USRCLASS.DAT\Local Settings\Software\Microsoft\Windows\Shell\Bags
+
+        * USRCLASS.DAT\Local Settings\Software\Microsoft\Windows\Shell\BagMRU
+
+        * NTUSER.DAT\Software\Microsoft\Windows\Shell\Bags
+
+        * NTUSER.DAT\Software\Microsoft\Windows\Shell\BagMRU
+
+        * ShellBag Explorer from EZ tools is a useful tool when dealing with ShellBags
+
+    * MRU (Most Recently Used) Open/Save and LastVisited Dialogue -
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\OpenSavePIDlMRU
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\ComDlg32\LastVisitedPidlMRU
+
+    * Windows Explorer address/search bars -
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\WordWheelQuery
+
+    * UserAssist - Windows stores information including program names, launch times, and number of launches about programs launched from Windows Explorer and this data is stored in the User Assist registry keys.
+
+        * NTUSER.DAT\Software\Microsoft\Windows\CurrentVersion\Explorer\UserAssist\\\<GUID>\Count
+
+    * ShimCache - Tracks backwards and application-OS compatibility as well as all applications launched on the system (Name, Size, Last Modified Time of the EXEs). It is also known as Application Compatibility Cache (AppCompatCache).
+
+        * SYSTEM\\\<CurrentControlSet>\Control\Session Manager\AppCompatCache
+
+    * Amcache - Stores execution path, installation, execution/deletion times, and SHA1 hashes of programs executed on the system.
+
+        * Amcache.hve\Root\\\<File Type/Category>\\\<File>
+
+    * Background Activity Monitor (BAM) / Desktop Activity Monitor (DAM) - Tracks activity of background applications and desktop applications respectively.
+
+        * SYSTEM\\\<CurrentControlSet>\Services\bam\UserSettings\\\<SID>
+
+        * SYSTEM\\\<CurrentControlSet>\Services\dam\UserSettings\\\<SID>
+
+    * Device ID - Windows keeps track of USB keys plugged into the system and store information such as time of connection and IDs for vendor, product, and version.
+
+        * SYSTEM\\\<CurrentControlSet>\Enum\USB
+
+        * SYSTEM\\\<CurrentControlSet>\Enum\USBSTOR
+
+        * Deeper inside these keys, the first and last connection time as well as last disconnection time are stored
+
+            * SYSTEM\\\<CurrentControlSet>\Enum\\\<USB/USBSTOR>\\\<VID&PID>\\\<USBSerial#>\Properties\\\<ID>\\\<Value>
+
+                * Where value is set to and corresponds with -
+
+                    * 0064 - First Connection Time
+
+                    * 0066 - Last Connection Time
+
+                    * 0067 - Last Removal Time
+
+    * USB volume names -
+
+        * SOFTWARE\Microsoft\Windows Portable Devices\Devices
+
+#### Windows File System
