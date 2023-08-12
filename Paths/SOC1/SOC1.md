@@ -894,3 +894,81 @@ Process/Notes:
         * SOFTWARE\Microsoft\Windows Portable Devices\Devices
 
 #### Windows File System
+
+* A filesystem (fs) is a standardized way to organize the bits/files on a storage medium.
+
+* File Allocation Table (FAT) - The FAT fs is one file system used by Windows and used to be the default. It is a table that indexes the bit locations of files. It is fairly primitive and lacks in features outside of the ability to store/organize data.
+
+    * FAT Data Structures -
+
+        * Cluster - The basic storage unit of FAT. Each files is a group of clusters which are groups of bits.
+
+        * Directory - Contains file ID info such as name, namelength, and first cluster.
+
+        * File Allocation Table - A linked list of all clusters. Nodes contain cluster status and pointer to next cluster.
+
+    * FAT, FAT12, FAT16, FAT32 - The numbers started at 8 with FAT and the numbers represent the length of the cluster addresses in bits.
+
+    * exFAT - Dramatically increased volume capacity with less security and overhead than NTFS and therefore lighter-weight.
+
+* New Technology File System (NTFS) - 
+
+    *New Technology is what NT stands for (E.g. Windows NT) so it isn't wrong to think of it as NT file system*
+
+    * NTFS was made to have more features than the previous FAT, including better security, reliability, and less limitation.
+
+        * Journaling - A metadata changelog for the volume. Stored in $LOGFILE in the volumes root directory.
+
+        * Access Controls - Definition of file/dir owners and permissions for each user.
+
+        * Volume Shadow Copy - Keeps track of file changes and can be used to restore previous file/volume states for recovery.
+
+        * Alternate Data Streams (ADS) - Allows a file to have multiple streams of data.
+
+        * Master File Table (MFT) - Like a more evolved version of the FAT. It is implemented as an array of file records. Some notable and important files in the MFT include -
+
+            * $MFT - The first record in the volume. The Volume Boot Record (VBR) points to the cluster containing $MFT. $MFT stores info about the clusters where all other objects on the volume are located and contains a directory of all files on the volume.
+
+            * $LOGFILE - Stores the transactional logging of the fs.
+
+            * $UsnJrnl (Update Sequence Number Journal) - Present in the $Extend record and holds info about all files changed and the reason for the changes. Basically a changelog and sometimes referred to as change journal.
+
+    * MFT Explorer is from EZ tools and is a cli and/or gui tool used to explore the MFT files.
+
+#### Data Recovery
+
+* When a file is deleted, the filesystem removes the entry from the file table or it's equivalent. This means the data is still on the disk as long as it hasn't been overwritten or damaged.
+
+* A disk image or disk image file is a bitwise copy of a disk drive.
+
+    * There are many ways to make a disk image. A popular tool for this is FTK imager.
+
+* Using a disk image, the entire drive can be scanned (manually or using tools for automating).
+
+    * Autopsy is one tool that can be used to scan disk image.
+
+#### Windows Filesystem Forensics
+
+* Windows Prefetch Files - Information about run programs are stored in "C:\Windows\Prefetch" with an extention of `.pf` in case of further frequent use to increase efficiency.
+
+    * pf files contain last run times, run count, and files/handles used.
+
+    * Prefetch Parser from EZ tools is made for analysis of these files. Many of the EZ Tools can use EZ Viewer to view the output data.
+
+* In Windows 10, there was a SQLite db called the Windows 10 Timeline that stored information on last executed programs. It is stored at "C:\Users\\\<User>\AppData\Local\ConnectedDevicesPlatform\\\<folder>\ActivitiesCache.db". There is also an EZ Tools tool for this.
+
+* Windows Jump Lists - Meant to help users get to their recently used files from the taskbar by right-clicking an application and viewing it's recently used files. The data is stored in "C:\Users\\\<User>\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations". Again, there is an EZ Tools tool for this.
+
+* Shortcut Files - Windows makes shortcut files for every file opened both locally and remotely which contain data like opening times and file paths. Again, there's an EZ Tools for it.
+
+    * C:\Users\\\<User>\AppData\Roaming\Microsoft\Windows\Recent\
+
+    * C:\Users\\\<User>\AppData\Roaming\Microsoft\Office\Recent\
+
+    * These can also sometimes contain information on USB devices.
+
+* Internet Explorer and Edge History - The browsing history includes files opened on the system even those not opened using the browser. They have a prefix of "file:///". Many tools can analyze web cache data including Autopsy.
+
+* Setupapi dev logs for USB devices - "C:\Windows\inf\setupapi.dev.log" stores setup information when any new device is attached to the system
+
+---
