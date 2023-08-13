@@ -683,6 +683,14 @@ Process/Notes:
 
     * Velociraptor - An open-source tool for endpoint-monitoring and DFIR.
 
+Disk Image and Memory Capture -
+
+    * Disk Images and Memory Captures are bitwise copies of the filesystem and volatile memory respectively.
+
+    * Tools to create these include -
+
+        * Forensic Tool Kit (FTK) - FTK Imager - An open-source, cross-platform tool for creating these images/captures from both Windows and Linux systems.
+
 ---
 
 ### *The Incident Response Lifecycle*
@@ -949,7 +957,7 @@ Process/Notes:
 
 #### Windows Filesystem Forensics
 
-* Windows Prefetch Files - Information about run programs are stored in "C:\Windows\Prefetch" with an extention of `.pf` in case of further frequent use to increase efficiency.
+* Windows Prefetch Files - Information about run programs are stored in "C:\Windows\Prefetch" with an extension of `.pf` in case of further frequent use to increase efficiency.
 
     * pf files contain last run times, run count, and files/handles used.
 
@@ -970,5 +978,99 @@ Process/Notes:
 * Internet Explorer and Edge History - The browsing history includes files opened on the system even those not opened using the browser. They have a prefix of "file:///". Many tools can analyze web cache data including Autopsy.
 
 * Setupapi dev logs for USB devices - "C:\Windows\inf\setupapi.dev.log" stores setup information when any new device is attached to the system
+
+---
+
+### Linux Forensics
+
+#### Linux System Config and Info
+
+* In linux, instead of the registry database and special registry hive files, linux's configuration and information is held in regular files, most of which are usually located in the /etc/ directory.
+
+* Some useful information that will be common points of interest include -
+
+    * OS-Release - /etc/os-release
+
+    * Accounts - /etc/passwd contains entries with 7 colon-seperated fields which contain username, password info, uid, gid, description, home dir info, and default shell. User created user accounts have uids of 1000+.
+    
+        * /etc/shadow may also contain password information for accounts.
+
+    * Groups - /etc/group
+
+    * Sudoers - Users may only elevate priviliges using sudo if present in the sudoers file /etc/sudoers
+
+    * Login Info - In /var/log/, the btmp file contains info about failed logins and the wtmp file contains data about logins. These are binary files read using `last`.
+
+    * Authentication Logs - Every user authentication on a linux system is logged. The auth log is /var/log/auth.log.
+
+    * Hostname - /etc/hostname
+
+    * Timezone - /etc/timezone
+
+    * Network -
+    
+        * /etc/network/interfaces shows network interfaces
+
+        * `ip` can be used for finding MAC and IP addresses of the interfaces and more
+
+        * `netstat` can be used to monitor active network connections
+
+    * DNS - /etc/hosts holds the DNS name assignment configuration
+
+        * /etc/resolv.conf holds info regarding the DNS servers that the system uses for DNS resolution
+
+    * Processes Running - `ps`
+
+#### Forensics
+
+* Persistence Mechanisms - Ways for a program to remain/run on a system after a reboot.
+
+    * Cron Jobs - Programs that run at set time intervals. /etc/crontab has the information on them.
+
+    * Startup Services - /etc/init.d/ contains a list of services that start when the system boots.
+
+    * .bashrc - A script that runs when a shell is spawned. There is usually a .bashrc file made for each user that is stored in their home directory. The system-wide settings are located at /etc/bash.bashrc and /etc/profile.
+
+* Sudo execution history - Stored in the previously mentioned auth log /var/log/auth.log.
+
+* Bash history - Every user has a bash history unless it's configured to be deleted or not stored in some way. The history is stored in the user's home directory ~/.bash_history.
+
+* Text Editor Histories - A history of files accessed using vim or other very common text editors.
+
+    * Vim stores logs for opened files in ~/.viminfo
+
+* Logs - Generally found in /var/log/
+
+    * Syslog - Configurable amount of detail stored regarding system activity. /var/log/syslog
+
+    * Auth logs - Previously discussed twice. /var/log/auth.log but there can be multiple with appended indices (e.g. /var/log/auth.log.1) It is possible to access them all with /var/log/auth.log*
+
+    * Other logs - Most logs will be located in /var/log/ including most application logs.
+
+---
+
+### Autopsy
+
+* Autopsy is an open-source DF platform that can run cross-platform.
+
+* Autopsy files have an extension of .aut
+
+* Autopsy supports raw single, raw split, EnCase, and virtual machine disk image formats.
+
+* Ingest Modules are made to analyze and retrieve specific data from the drive.
+
+---
+
+### Redline
+
+* Redline is an open-source windows app intended to give a high-level view of memory analysis through a nice GUI.
+
+* Redline provides the ability to capture and analyze various amounts of the disk/memory depends on the operating system.
+
+* IOC files - They are basically just plaintext files containing indicators of compromise which are stored in .ioc files. They can be modified and shared with the security community.
+
+* FireEye, the company that created Redline, also created a program called IOC Editor which can be used to create .ioc files.
+
+* The IOC Search Collector in Redline uses IOC files and ignores data that doesn't match your IOCs.
 
 ---
