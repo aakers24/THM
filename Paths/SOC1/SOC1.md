@@ -905,6 +905,10 @@ Disk Image and Memory Capture -
 
 * A filesystem (fs) is a standardized way to organize the bits/files on a storage medium.
 
+* A sector is the minimum storage unit of a drive.
+
+* A cluster is a group of sectors that are allocated as a unit. The cluster size is the minimum size of a block that is readable/writeable by the OS.
+
 * File Allocation Table (FAT) - The FAT fs is one file system used by Windows and used to be the default. It is a table that indexes the bit locations of files. It is fairly primitive and lacks in features outside of the ability to store/organize data.
 
     * FAT Data Structures -
@@ -1021,6 +1025,18 @@ Disk Image and Memory Capture -
 
     * Processes Running - `ps`
 
+#### Linux Filesystems
+
+* Since the early '90s Linux has used the EXT (Extended) file system. The first successful version was ext2. In 2001 ext3 was created and added journaling. In 2006 ext4 was created and is an improved ext3 which added more capacity and better performance. You can upgrade through the versions and ext4 can be mounted as ext3 if needed. ext4 is the current default fs for most Linux distributions.
+
+* ext4 uses a unit called Blocks which is a group of sectors. The number of sectors must be an integral (integer) power of 2. Blocks are grouped into Block Groups. (From what I can tell the Block--rather a level of abstraction of many of them--is the functional equivalent of the FAT in the Windows FSs)
+
+* Index Nodes known is inodes store all the metadata about files. The inode table is a linear array of inodes.
+
+* ext4 fs splits the fs into a series of block groups and tries hard to keep files in the same block which reduces seek times.
+
+* ext4 supports Extended Attributes which are similar to ADS in windows. Check documentation in regards to very large EAs as I thought I saw something about going beyond the size restrictions when I was reading through it.
+
 #### Forensics
 
 * Persistence Mechanisms - Ways for a program to remain/run on a system after a reboot.
@@ -1072,5 +1088,31 @@ Disk Image and Memory Capture -
 * FireEye, the company that created Redline, also created a program called IOC Editor which can be used to create .ioc files.
 
 * The IOC Search Collector in Redline uses IOC files and ignores data that doesn't match your IOCs.
+
+---
+
+### KAPE
+
+* KAPE is essentially a solution for automating the processes discussed in the previous sections on Windows forensics.
+
+* KAPE uses things called Targets and Modules. Targets are the desired artifacts to extract and Modules are programs that process the collected artifacts and extract the data from them.
+
+* KAPE works in 2 passes to collect files. The first pass gets the files from the OS. The second pass uses raw disk reads to bypass the OS and grab files that the OS has locked.
+
+* .tkape files are target files for kape. .mkape are module files for kape. There are guide files for creating these.
+
+* Compound Targets are when a single command will collect multiple targets.
+
+* The bin directory contains binaries that are being used but are not natively present on the system. EZ Tools are commonly found here as they aren't usually on a system, but are used for DFIR.
+
+* The !Disabled directory is for targets that you want to keep but not to show up in the active list. The !Local directory is for those that you don't want to show up in remote repositories.
+
+* The Flush option is used to delete information so be very careful to not use this option unless there is a very good reason.
+
+* In gKAPE's current command line section, there is a display of what the command looks like and is updated while configuring using the GUI.
+
+* When using Target and Module options at the same time, the Module Source shouldn't be necessary to configure. If no module source is included it will use the target destination by default.
+
+* KAPE can be run in batch mode by putting all of your commands in a single line in a _kape.cli file in the same directory as kape.exe. Then when kape.exe is run as admin it will check for, and if found, execute the commands in the _kape.cli file.
 
 ---
