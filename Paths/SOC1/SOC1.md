@@ -1116,3 +1116,77 @@ Disk Image and Memory Capture -
 * KAPE can be run in batch mode by putting all of your commands in a single line in a _kape.cli file in the same directory as kape.exe. Then when kape.exe is run as admin it will check for, and if found, execute the commands in the _kape.cli file.
 
 ---
+
+### Volatility
+
+* Volatility is a FOSS tool for memory forensics written in python and using python plugins/modules thus it is cross-platform. It is created by the VolatilityFoundation.
+
+* It is the most popular framework for extracting artifacts from RAM samples/dumps.
+
+* Volatility3 is the most recent version and uses python3 while the volatility2 versions use python2. The syntax changed between versions. As volatility has been around a long time, it is commonplace to see volatility2 syntax when looking through references and this should be kept in mind.
+
+* Some ways of extracting the memory dumps themselves include -
+
+    * FTK Imager
+    * Redline
+    * DumpIt.exe
+    * dd / win32dd.exe / win64dd.exe
+    * Memoryze
+    * FastDump
+
+    * Most of these tools will output a .raw file.
+
+    * Grabbing this information from a VM is generally done by collecting a file on the host machine. Depending on the hyperviser the filetype/extension may differ -
+
+        * Hyper-V (wsl uses this) - .bin
+        * VirtualBox - .sav (partial) VolatilityFoundation has a wiki page on getting a full dump in the Volatility GitHub repo
+        * VMWare - .vmem
+        * Parallels - .mem
+
+* Volatility has an `imageinfo` plugin to help identify images if you are just given a file and don't know what system it came from. The `windows.info`, `linux.info`, and `mac.info` plugins help by running the image through them and seeing what they say.
+
+* Syntax - `python3 vol.py -f <memory file> <os>.<plugin/module/package>`
+
+* `pslist`, `pstree`
+
+* `psscan` - Rather than a regular pslist, this searches for data structures resembling _EPROCESS. This can find hiding processes than unlinked themselves from the pslist, but also can return false positives.
+
+* `netstat` - If this is too unstable, there are other tools to help extract PCAPs from memory dumps such as bulk_extractor.
+
+* `dlllist`
+
+* `malfind` - Scans the heap to find processes that have the executable bit set (RWE or RX) and/or no memory-mapped file on disk (fileless malware).
+
+* `yarascan` Checks the memory against Yara rules.
+
+* Checking for evasion techniques -
+
+    * Hooking -
+    
+        * Types include -
+
+            * SSDT Hooking - System Service Descriptor Table
+
+            * IRP Hooking - I/O Request Packet
+
+            * IAT Hooking - Import Address Table
+
+            * EAT Hooking - Export Address Table
+
+            * Inline Hooking - Intercepting/hooking calls to target functions
+
+    * `ssdt` - This plugin searches for ssdt hooks in the memory dump. Since ssdt hooking can be done for legitimate purposes, it may be a cumbersome task to identify any threat actors in the output. It may be better to find IOCs elsewhere and use this for correlation.
+
+    * `modules` - Dumps all kernel modules. Can be hidden from.
+
+        * `driverscan` - Can help find those missed by modules plugin.
+
+    * `modscan`, `driverirp`, `callbacks`, `idt`, `apihooks`, `moddump`, `handles`, `memmap`
+
+* It is possible to have an output file of a volatility command you run by using the -o option.
+
+    * Some of the modules output a file and you can use other utilities to get information out of them. E.g. Using the memmap plugin yields a .dmp file and using `strings` and `grep` it is possible to extract some information.
+
+* The `--help` option also contains a list of many inbuilt plugins.
+
+---
