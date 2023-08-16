@@ -2,7 +2,7 @@
 
 Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, DFIR, Windows, Registry, Linux, Malware Analysis, Virtual Machine, Sandbox, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor, RegEdit
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, RegEdit, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor, TheHive
 
 Process/Notes:
 
@@ -1188,5 +1188,179 @@ Disk Image and Memory Capture -
     * Some of the modules output a file and you can use other utilities to get information out of them. E.g. Using the memmap plugin yields a .dmp file and using `strings` and `grep` it is possible to extract some information.
 
 * The `--help` option also contains a list of many inbuilt plugins.
+
+---
+
+### Velociraptor
+
+* `Velociraptor` is an open-source, cross-platform endpoint monitoring DFIR tool.
+
+* It is similar to a SIEM in that it can be installed as a server or as a client, following the agent/manager paradigm. There is also "Instant Velociraptor" which is a fully functional Velociraptor system deployed only to the local machine. All types of deployment are obviously covered in the Velociraptor documentation.
+
+* When on the dashboard and then selecting an endpoint to view, the shell tab allows you to run commands remotely on the endpoint from the dashboard.
+
+* Programs other than KAPE can use KAPE files. In Velociraptor you can create a new collection using `<os>.KapeFiles.Targets`
+
+* The Velociraptor Virtual File System (VFS) is a server side cache of the files on the endpoint.
+
+* Velociraptor Query Language (VQL) is a framework for creating customized artifacts which allows for collection, querying, and monitoring of almost any aspect of endpoints, groups of endpoints, or an entire network. It can also be used for automation.
+
+    * Notebooks in Velociraptor consist of Markdown and VQL.
+
+    * VQL can also be run from the command line.
+
+    * VQL lets you package queries into mini-programs called Artifacts which are just structured YAML files containing a query with a name attached to it. This allows searching for and running queries by name.
+
+    * Like most query language it is syntactically similar to others, specifically SQL.
+
+* The Velociraptor site has an Artifact Exchange where you can share and search for VQL artifacts.
+
+---
+
+### TheHive
+
+* `TheHive` is a FOSS, scalable Security Incident Response Platform integrated with Malware Information Sharing Platform (MISP).
+
+    * It can be used to collaborate on investigations allowing for real-time information sharing.
+
+* TheHive has 3 core operational principles -
+
+    * Collaborate - Simultaneous, real-time collaboration and information sharing.
+
+    * Elaborate - Cases and their tasks can be created by the template engine.
+
+    * Act - Add observables (or import them from MISP) to each case. Once the case is closed you can export observables to MISP.
+
+* Cases can be broken down into tasks and turned into templates. Analyst progress, pieces of evidence, tags, and other observables can be attached to cases.
+
+    * Cases can be imported from SIEM alerts, email reports, and other event sources.
+
+* Cortex is an open-source analysis and active response engine. It can be used for correlation analysis and recognition of developing patterns.
+
+* Responders can be used to run actions to communicate, share info, and prevent or contain a threat.
+
+* Users can create custom dashboards containing statistics on cases, tasks, observables, metrics, and more. These can generate key performance indicators (KPIs).
+
+* Administrators can create an organization on the platform and organize their personnel.
+
+* Traffic Light Protocol (TLP) - Set of designations to ensure approriate access to sensitive information. There are colors which indicate a scale of full disclosure / open access (white) to no disclosure / restricted access (red). For more information look to CISA.
+
+* Permissable Actions Protocol (PAP) - Used to indicate what can be done with information, if an attacker can detect the current state of analysis, or defensive actions that are in place. It uses a color scheme similar to TLP. For more information look to MISP.
+
+---
+
+### Intro to Malware Analysis
+
+* The term malware comes from the words "malicious" and "software" being put together.
+
+    * Hardware came many centuries ago from putting the adjective "hard" and the noun "ware"- meaning an article of merchandise or manufactured good- together. Then when computers were invented software was created in the same way. Since then there have been many names derivative of software in the same way that malware is.
+
+    * Thus any software with malicious purpose can be classified as malware. There are categorisations of malware made based on behaviour.
+
+* Malware is inherently dangerous. Precautions to be taken before analyzing malware include -
+
+    * Analyze malware on a dedicated system.
+
+    * When not being analyzed, malware samples must be kept in password-protected zip/rar/other archives.
+
+    * Only extract from the archive in the aforementioned dedicated system.
+
+    * Created an isolated VM dedicated to malware analysis and ensure there is a clean state that can be reverted to.
+    
+    * Ensure all possible connections to the internet are severed. If an internet connection is absolutely necessary it must be closely monitored.
+
+    * Always ensure a clean state after analysis. This could be reverted a VM to a clean state or if for some reason you had to run on a host system, then wiping and reinstalling everything.
+
+* There are 2 main categories of malware analysis techniques -
+
+    * Static Analysis - Analysis without execution/opening.
+
+        * Evasion techniques for static analysis include obfuscation and packing.
+
+    * Dynamic Analysis - Analysis of execution in a controlled environment.
+
+        * Evasion techniques for dynamic analysis include environment detection.
+
+* Static analysis is usually done first as it is comes with *less* (<b>NOT NONE</b>) risk and can inform the rest of the analysis.
+
+* Remnux (Reverse Engineering Malware Linux) is a Linux distribution built for malware analysis.
+
+* Some common static analysis techniques include -
+
+    * `file` command will give the actual filetype information, as the file extension can be altered and misleading.
+
+    * `strings` command will return UNICODE or ASCII strings at least 3 characters in length.
+
+    * Common hashes for malware identification including md5, sha1, and sha256 can be retrieved using the commands `md5sum`, `sha1sum`, `sha256sum` respectively.
+
+    * Antivirus and VirusTotal - Searching the hash from the previous point or scanning the file with an AV (Antivirus) can provide useful information. Uploading samples can help too, but should only be done with high condifence that this will not result in compromise of any systems or information.
+
+    * The PE File Header - The PE File Header contains metadata about the Portable Executable file. The PE format is for executables, object code, DLLS, and more which are used in 32 and 64 bit Windows systems. These are common in malware analysis.
+
+        * PE files usually don't contain all of the code they need to run. Very often they use code provided by the OS. This helps keep the PE small.
+
+            * Imports are the functions that the PE is using but doesn't contain. These imports are vital to the operation of the PE and can give away what the file will do if run.
+
+        * PE files are divided into sections. These are compiler/packer dependent, but can contain useful information. Some common sections include .text- generally CPU instructions and marked executable, .data- contains variables and other global data, and .rsc- contains resources such as images.
+
+        * `pecheck` is a tool written in python to check PE headers. `pe-tree` is also written in python and allows you to view PE header info in tree format.
+
+* A sandbox is an isolated environment where malware is run for information purposes. It is usually made to mimic the target environment of the malware. Sandboxes use virtualization technology (VMs).
+
+    * The term sandbox comes from the military where it refers to a sandbox where terrain would be modeled and their operation would be dry-run to analyze possible situations and outcomes.
+
+    * For malware analysis considerations in constructing a sandbox include -
+
+        * A VM that mimcs the target environment. The VM requires the ability to take snapshots and revert to their states.
+
+        * OS and Network monitoring tools/software.
+
+        * Network control via dummy DNS server and web server.
+
+        * A way to move analysis files, logs, and malware samples to and from the VM without compromising the host or anything else.
+
+    * Building a sandbox from scratch is most often not necessary. It is often faster/easier to set up and open-source sandbox. They provide a framework for performing basic dynamic analysis and are customizable.
+
+        * Some open-source sandboxes include -
+
+            * Cuckoo's Sandbox - Popular and customizable with good documentation and lots of community.
+
+            * CAPE Sandbox - One of the more advanced options.
+
+    * Another option is using an online sandbox.
+
+        * Some of these include -
+
+            * Both of the previous open-source sandboxes have online sandbox versions.
+
+            * Any.run
+
+            * Intezer
+
+            * Hybrid Analysis
+
+        * Exercise caution when uploading malware samples to online sandboxes. It is often better to search the sample's hash and see if the sample you want to analyze has been sandboxed on the platform before.
+
+* Malware can make use of various anti-analysis techniques.
+
+    * Some of the main anti-analysis techniques used by malware authors are Obfuscation and Packing.
+
+        * Obfuscation - The dictionary definition of Obfuscate is to render obscure, unclear, or unintelligible.
+
+        * A packer obfuscates, compresses, and/or encrypts data. There are legitimate uses for this. One legit use is obfuscating proprietary software to make reverse engineering more difficult. However in the case of malware, packing is used to make analysis- especially static- more difficult for analysts and researchers.
+
+            * Packed software can be unpacked. This can be done through various methods and tools including manually using debuggers.
+
+    * Another anti-analysis technique is sandbox evasion. Some of the methods for this include -
+
+        * Sleeping - When the malware executes it sleeps for a very long time. This is meant to timeout the sandbox.
+
+        * User Activity Detection - The malware waits for user activity before it does anything malicious. Because a sandbox doesn't have a user, no malicious code runs.
+
+        * User Footprinting - The malware checks for user files, browsing history, or similar evidence of a user. If not enough evidence of a user is found no malicious code runs.
+
+        * VM detection - Since sandboxes run on VMs, if malware detects it is running on a VM then no malicious code runs. VMs leave artifacts such as certain drivers or files and if those artifacts are found then the system is a VM.
+
+            * There are also VM *escape* vectors including vectors through the host-vm networking relationship and RAM.
 
 ---
