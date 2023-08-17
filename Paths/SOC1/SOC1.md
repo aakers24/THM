@@ -1,10 +1,11 @@
 # SOC 1
 
-Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, DFIR, Windows, Registry, Linux, Malware Analysis, Virtual Machine, Sandbox, Phishing, Social Engineering
+Tags: Blue Team, Cyber Defense, MITRE, Cyber Threat Intelligence, IDS, IPS, Network Security, Traffic Analysis, Endpoint Security, EDR, SIEM, Digital Forensics, Incident Response, DFIR, Windows, Registry, Linux, Malware Analysis, Virtual Machine, Sandbox, Email Analysis, Phishing, Social Engineering
 
-Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, RegEdit, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor, TheHive
+Tools: URL Shorteners, VirusTotal.com, Any.run, SysInternals Suite, Fuzzy hashing, MITRE ATT&CK, Shadow Copy, UrlScan.io, Abuse.ch, PhishTool, Talos Intelligence, Yara, Snort, Zeek, Brim, Wireshark, SysInternals Suite, OSQuery, Wazuh, ELK, Elasticsearch, Logshare, Kibana, Splunk, RegEdit, EZ Tools, KAPE, Autopsy, Volatility, Redline, Velociraptor, TheHive, pecheck, Thunderbird, MxToolbox, PhishTool
 
 Process/Notes:
+
 
 
 ## Cyber Defense Frameworks
@@ -683,7 +684,7 @@ Process/Notes:
 
     * Velociraptor - An open-source tool for endpoint-monitoring and DFIR.
 
-Disk Image and Memory Capture -
+* Disk Image and Memory Capture -
 
     * Disk Images and Memory Captures are bitwise copies of the filesystem and volatile memory respectively.
 
@@ -1544,8 +1545,8 @@ Disk Image and Memory Capture -
 
 * DNS records can be looked up- including these. One tool for this is `MxToolbox`.
 
-* S/MIME is Secure MIME. It uses public key cryptography to ensure data integrity and non-repudiation.
-
 * SMTP can be used for tunneling.
+
+* S/MIME is Secure MIME. It uses public key cryptography to ensure data integrity and non-repudiation.
 
 ---
