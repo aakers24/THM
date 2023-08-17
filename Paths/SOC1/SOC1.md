@@ -15,7 +15,7 @@ Process/Notes:
 
     * Hash Values - Identifying malware or any other artifacts based on their hash values.
 
-        * A change of a single bit completely alters a hash therefor bypassing this method. Fuzzy hashing aims to help remedy this for defenders.
+        * A change of a single bit completely alters a hash therefore bypassing this method. Fuzzy hashing aims to help remedy this for defenders.
 
     * IP Addresses - Identifying, blocking, and tracking attackers based on their IPs.
 
@@ -23,7 +23,7 @@ Process/Notes:
 
     * Domains - Pretty much same as IPs but using Domains instead.
 
-        * Again changable, but more involved.
+        * Again changeable, but more involved.
 
         * URL shorteners are often used, but appending a "+" to the url will show you where the url actually leads.
 
@@ -95,7 +95,7 @@ Process/Notes:
 
     * Type 2 Infrastructure - Infrastructure owned by an intermediary party- whether they're aware or not
 
-    * Service Provider - Organizations required for the existance of previous 2 definitions (e.g. ISPs, power companies, domain registrars, etc.)
+    * Service Provider - Organizations required for the existence of previous 2 definitions (e.g. ISPs, power companies, domain registrars, etc.)
 
 * Event Meta Features - Optional information
 
@@ -146,7 +146,7 @@ Process/Notes:
 
 * Operation Intel: Adversary's motives for a specific attack
 
-* CTI Lifecycle:
+* CTI Life Cycle:
 
     * Direction - Planning and analysis of assets
 
@@ -156,9 +156,9 @@ Process/Notes:
 
     * Analysis - Insight derivation based on processed data
 
-    * Dissemination - Informing all relavent parties across disciplines such as stakeholders and technical teams
+    * Dissemination - Informing all relevant parties across disciplines such as stakeholders and technical teams
 
-    * Feedback - Incorporation of inputs from relavent parties
+    * Feedback - Incorporation of inputs from relevant parties
 
 * CTI Standards and Frameworks - MITRE ATT&CK, TAXII, STIX, Cyber Kill Chain, Diamond Model
 
@@ -250,9 +250,9 @@ Process/Notes:
 
     * Intrusion Detection System (IDS):
     
-        * Network Intrustion Detection System (NIDS) - Monitors traffic flow of the network and alerts on identified suspicious/malicious traffic.
+        * Network Intrusion Detection System (NIDS) - Monitors traffic flow of the network and alerts on identified suspicious/malicious traffic.
 
-        * Host-Based Intrustion Detection System (HIDS) - Monitors traffic flow of a system and alerts on identified suspicious/malicious traffic.
+        * Host-Based Intrusion Detection System (HIDS) - Monitors traffic flow of a system and alerts on identified suspicious/malicious traffic.
 
     * Intrusion Prevention System (IPS):
 
@@ -338,23 +338,23 @@ Process/Notes:
 
 ### Wireshark
 
-* Wireshark is an open-source, cross-platform, tools for sniffing and analyzing live network traffic as well as creating and inspecting pcaps.
+* Wireshark is an open-source, cross-platform, tool for sniffing and analyzing live network traffic as well as creating and inspecting pcaps.
 
 * *To satiate my own curiosity I wanted to know what a pcapng file was because I've seen things with ng appended before including this file extension and didn't know what it meant. Apparently the ng means next generation.*
 
 * Packet or Protocol Dissection is investigating packet details by decoding available protocols and fields.
 
-* DHCP (Dynamic Host Configuration Protocol) is resposible for managing automatic IP address and required communication parameters.
+* DHCP (Dynamic Host Configuration Protocol) is responsible for managing automatic IP addresses and required communication parameters.
 
-* NetBIOS (Network BIOS - Network Basic Input/Output System) is resposible for allowing applications on different hosts to communicate. NBNS (NetBIOS Name Service) is the abbreviation in Wireshark.
+* NetBIOS (Network BIOS - Network Basic Input/Output System) is responsible for allowing applications on different hosts to communicate. NBNS (NetBIOS Name Service) is the abbreviation in Wireshark.
 
 * Kerberos is the default authentication service for Windows domains and is responsible for service requests between two or more computers over the untrusted network. Its goal is to provide secure identity.
 
-* ICMP (Internet Control Message Protocol) was made to diagnose and report network issues and is used in reporting and testing. It is often trusted and is used for DoS attacks and data exfiltration/tunneling by way of the addition data payload it can transfer.
+* ICMP (Internet Control Message Protocol) was made to diagnose and report network issues and is used in reporting and testing. It is often trusted and is used for DoS attacks and data exfiltration/tunneling by way of the additional data payload it can transfer.
 
     * Large volumes or packet sizes, especially after a security breach, are IoCs. A way around the size issue for attackers is to create custom packets only containing the usual 64 bytes.
 
-    * The tunnelled data is often formatted to the TCP, HTTP, or SSH protocols.
+    * The tunneled data is often formatted to the TCP, HTTP, or SSH protocols.
 
 * DNS (Domain Name System) is the system which maps IPs to domain names. As with ICMP it is often trusted and used for data exfiltration/tunneling.
 
@@ -362,7 +362,7 @@ Process/Notes:
 
     * The concept is that a domain is configured as a C2 channel and DNS queries are sent to this server. These queries are crafted as subdomain queries, but the subdomains are actually commands or data being encoded into the queries.<br/>`<command/data>.<C2server>.com`<br/>The commands are sent as responses.
 
-*I already knew most if not all of this, but for some reason some things about ICMP and DNS wouldn't stick in my head like the SYN, ACK, RST of TCP and things like UDP's one-wayness, etc. Hopefully noting these things down help me remember more clearly.*
+*I already knew most if not all of this, but for some reason some things about ICMP and DNS wouldn't stick in my head like the SYN, ACK, RST of TCP and things like UDP's one-wayness, etc. Hopefully noting these things down will help me remember more clearly.*
 
 * http2 is https and you need to add the key to wireshark to view the traffic.
 
@@ -377,7 +377,7 @@ Process/Notes:
 
 ### Intro to Endpoint Security
 
-* Windows logs are stored in .evt/.evtx files which are propriatary binary formats. They can be converted to XML using the Windows API. The files are normally stored in "C:\Windows\System32\winevt\Logs".
+* Windows logs are stored in .evt/.evtx files which are proprietary binary formats. They can be converted to XML using the Windows API. The files are normally stored in "C:\Windows\System32\winevt\Logs".
 
 * The ways to view these logs include:
 
@@ -403,13 +403,13 @@ Process/Notes:
 
 * smss.exe > csrss.exe (Session 0) && wininit.exe (Session 0, user: system, 1 instance)
 
-* smss.exe > csrss.exe (Session 1) && winlogon.exe (Session 1, user: system, 1 instance regularly but more for additional logons/sessions)
+* smss.exe > csrss.exe (Session 1) && winlogon.exe (Session 1, user: system, 1 instance regularly but more for additional logins/sessions)
 
 * wininit.exe > services.exe (Session 0, user: system, 1 instance) > svchost.exe (Session 0, user: system, bin path called with -k)
 
 * wininit.exe > lsass.exe (Session 0, user: system, 1 instance)
 
-* winlogon.exe > userinit.exe (launches value in "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ShellPrograms" and/or explorer.exe then exits) > explorer.exe (Session 1+, 1 instance but more for additional interactive logons/sessions, user: user)
+* winlogon.exe > userinit.exe (launches value in "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\ShellPrograms" and/or explorer.exe then exits) > explorer.exe (Session 1+, 1 instance but more for additional interactive logins/sessions, user: user)
 
 *Session 0 is an isolated session for the OS.*
 
@@ -445,7 +445,7 @@ Process/Notes:
 
     * TCPView - Shows detailed listing of all TCP and UDP endpoints on the system.
 
-    * Autoruns - A utility that shows what automatically runs on the system including on boot, on logon, or on an application start.
+    * Autoruns - A utility that shows what automatically runs on the system including on boot, on login, or on an application start.
 
     * ProcDump - CLI util primarily purposed for monitoring CPU usage and generating crash dumps for applications. This can also be done through Process Explorer.
 
@@ -483,11 +483,11 @@ Process/Notes:
 
     * Directory Service Logs - Records events related to active directory including changes and activities and are mainly logged on the Domain Controllers.
 
-    * File Replication Service Logs - Records events related to Windows Servers during the sharing of group policies and logon scripts to domain controllers, from where they can be accessed by the users through the client servers.
+    * File Replication Service Logs - Records events related to Windows Servers during the sharing of group policies and login scripts to domain controllers, from where they can be accessed by the users through the client servers.
 
     * DNS Event Logs - Records events related to DNS and DNS servers use these logs.
 
-    * Custom Logs - Records events related to application that require custom data storage. These are partially dictated by the applications themselves based on the application's specific needs or operations.
+    * Custom Logs - Records events related to applications that require custom data storage. These are partially dictated by the applications themselves based on the application's specific needs or operations.
 
 * There are 5 event types in windows logs which include:
 
@@ -497,9 +497,9 @@ Process/Notes:
 
     * Information - Indicates an event which resulted in a successful operation.
 
-    * Success Audit - Indicates that a audited security access attempt was successful. E.g. successful user logon.
+    * Success Audit - Indicates that an audited security access attempt was successful. E.g. successful user login.
 
-    * Failure Audit - Indicates that a audited security access attempt failed. E.g. a user tries to access a drive and fails.
+    * Failure Audit - Indicates that an audited security access attempt failed. E.g. a user tries to access a drive and fails.
 
 * XPath is short for XML Path Language and it is meant to provide a standard syntax and functionality for addressing and manipulating parts of XML documents.
 
@@ -515,7 +515,7 @@ Process/Notes:
 
 * Sysmon can make use of a config file which you can make yourself or download a premade config.
 
-* Sysmon monitoring and loggin in conjuction with some of the previously mentioned log inspection tools/methods such as Get-WinEvent and XPath can give very granular control and insight on the Windows machine.
+* Sysmon monitoring and logging in conjunction with some of the previously mentioned log inspection tools/methods such as Get-WinEvent and XPath can give very granular control and insight on the Windows machine.
 
 ---
 
@@ -537,7 +537,7 @@ Process/Notes:
 
 * The Agents can also be set to check their configuration against a ruleset for compliance. This can be checked against frameworks/standards such as MITRE and NIST. This is also run on install by default.
 
-* As previously noted, the Wazuh agents collects logs and sends those logs to their manager. This works on all operating systems (obviously). Wazuh can be configured to grab and send any log. E.g.:
+* As previously noted, the Wazuh agents collect logs and send those logs to their manager. This works on all operating systems (obviously). Wazuh can be configured to grab and send any log. E.g.:
 
     * On Windows, Sysmon can be configured, then Wazuh can be configured to send those Sysmon logs, and the Wazuh manager can be configured to visualize this data.
 
@@ -558,7 +558,7 @@ Process/Notes:
 
 ### Introduction to SIEM
 
-* Security Information and Event Management (SIEM) tools collect data from endpoints across a network, store them in a central location, and performs correlation and analysis on them.
+* Security Information and Event Management (SIEM) tools collect data from endpoints across a network, store them in a central location, and perform correlation and analysis on them.
 
     * SIEMs use rules to analyze the ingested data. Once a detection happens or a set threshold is crossed, the SIEM creates an alert.
 
@@ -566,9 +566,9 @@ Process/Notes:
 
 * One of the main benefits of SIEM is that it takes logs from all of the endpoints/network *and* allows for correlation of the events, searching all of the logs, and fast investigation/response to incidents. This cuts down on the enormous amount of work/time that goes into managing a network and its security.
 
-* The logs collected on endpoints (e.g. Windows Event Viewer logs, Linux /var/log/, Webserver Logs, etc.) are ingested by the SIEM system. Common Log Ingestion techniques include:
+* The logs collected on endpoints (e.g. Windows Event Viewer logs, Linux /var/log/, Web server Logs, etc.) are ingested by the SIEM system. Common Log Ingestion techniques include:
 
-    * Agent - A lightweight tool that is part of the SIEM system installed on the endpoint that captures the logs and sends them to the SIEM server. (In Splunk this is refered to as the Forwarder)
+    * Agent - A lightweight tool that is part of the SIEM system installed on the endpoint that captures the logs and sends them to the SIEM server. (In Splunk this is referred to as the Forwarder)
 
     * Syslog - This is a protocol in which data is collected in real-time and sent to the central locale.
 
@@ -576,7 +576,7 @@ Process/Notes:
 
     * Port-Forwarding - SIEMs can listen on a port. Then the endpoints forward the data to the SIEM server's listening port.
 
-* Correlation rules are the rules used when analyzing ingested data. These are logical statements correlation to certain events. E.g. login attempts in a set period of time or "If the log is windows and event ID is <EventID>, trigger an alert for <Event>". *Basically just what you'd think based on previous "rules" discussed in the path.*
+* Correlation rules are the rules used when analyzing ingested data. These are logical statements correlated to certain events. E.g. login attempts in a set period of time or "If the log is windows and event ID is <EventID>, trigger an alert for <Event>". *Basically just what you'd think based on previous "rules" discussed in the path.*
 
 * Rules often need to be tuned and are subject to company policies. Alerts that aren't false positives are investigated by the SOC or equivalent.
 
@@ -627,7 +627,7 @@ Process/Notes:
 
 ### DFIR Introduction
 
-* Digital Forensics and Incident Reponse (DFIR) is an essential part of Cybersecurity because there will always be a threat of an attack succeeding and therefore preparation for such an event must always be maintained; in the event of any sort of successful attack that isn't stopped by primary defenses, the defenders need to be technically and mentally prepared.
+* Digital Forensics and Incident Response (DFIR) is an essential part of Cybersecurity because there will always be a threat of an attack succeeding and therefore preparation for such an event must always be maintained; in the event of any sort of successful attack that isn't stopped by primary defenses, the defenders need to be technically and mentally prepared.
 
     * DFIR practices include collection of digital forensic artifacts for purposes including identifying evidence of the attack, determining the extent to which the assets/environment have been compromised, and restoring the environment to a fully secure and functional state as it was before the event.
 
@@ -639,7 +639,7 @@ Process/Notes:
 
         * Information gathering and reporting.
 
-            * Communication of information to relavent non-technical parties.
+            * Communication of information to relevant non-technical parties.
 
             * Communication of information to the Cybersecurity community.
 
@@ -667,7 +667,7 @@ Process/Notes:
 
     * Timeline Creation -
 
-        * Once evidence has been collected and processed without compromising it's integrity, the information extrapolated is used for many things such as analysis and reporting. One tool/deliverable is a timeline of events which plots all of the actions and evidence chronologically.
+        * Once evidence has been collected and processed without compromising its integrity, the information extrapolated is used for many things such as analysis and reporting. One tool/deliverable is a timeline of events which plots all of the actions and evidence chronologically.
 
 * Some common DFIR tools include:
 
@@ -699,7 +699,7 @@ Disk Image and Memory Capture -
 
 1. Preparation - Readiness against attack. This includes documentation of requirements, definition of policies, inclusion and deployment of security tools, and training.
 
-1. Detection & Analysis - The process of detecting and analysing events that qualify as incidents. This includes getting alerts from tools, investigation into alerts, and hunting for unknown threats.
+1. Detection & Analysis - The process of detecting and analyzing events that qualify as incidents. This includes getting alerts from tools, investigation into alerts, and hunting for unknown threats.
 
 1. Containment, Eradication, & Recovery - Preventing the spread of an incident and securing the system/network. This includes infected host isolation, removing infection artifacts, and regaining control.
 
@@ -711,7 +711,7 @@ Disk Image and Memory Capture -
 
 #### Windows Registry
 
-* The Windows Registry is a database that hold the system's configuration data including information about the hardware, software, and users/accounts.
+* The Windows Registry is a database that holds the system's configuration data including information about the hardware, software, and users/accounts.
 
     * The Registry follows the key-value paradigm. A Registry Hive is a group of Keys, subkeys, and values stored in a single file on the disk.
 
@@ -879,7 +879,7 @@ Disk Image and Memory Capture -
 
         * SYSTEM\\\<CurrentControlSet>\Services\dam\UserSettings\\\<SID>
 
-    * Device ID - Windows keeps track of USB keys plugged into the system and store information such as time of connection and IDs for vendor, product, and version.
+    * Device ID - Windows keeps track of USB keys plugged into the system and stores information such as time of connection and IDs for vendor, product, and version.
 
         * SYSTEM\\\<CurrentControlSet>\Enum\USB
 
@@ -913,11 +913,11 @@ Disk Image and Memory Capture -
 
     * FAT Data Structures -
 
-        * Cluster - The basic storage unit of FAT. Each files is a group of clusters which are groups of bits.
+        * Cluster - The basic storage unit of FAT. Each file is a group of clusters which are groups of bits.
 
         * Directory - Contains file ID info such as name, namelength, and first cluster.
 
-        * File Allocation Table - A linked list of all clusters. Nodes contain cluster status and pointer to next cluster.
+        * File Allocation Table - A linked list of all clusters. Nodes contain cluster status and pointer to the next cluster.
 
     * FAT, FAT12, FAT16, FAT32 - The numbers started at 8 with FAT and the numbers represent the length of the cluster addresses in bits.
 
@@ -927,7 +927,7 @@ Disk Image and Memory Capture -
 
     *New Technology is what NT stands for (E.g. Windows NT) so it isn't wrong to think of it as NT file system*
 
-    * NTFS was made to have more features than the previous FAT, including better security, reliability, and less limitation.
+    * NTFS was made to have more features than the previous FAT, including better security, reliability, and less limitations.
 
         * Journaling - A metadata changelog for the volume. Stored in $LOGFILE in the volumes root directory.
 
@@ -949,7 +949,7 @@ Disk Image and Memory Capture -
 
 #### Data Recovery
 
-* When a file is deleted, the filesystem removes the entry from the file table or it's equivalent. This means the data is still on the disk as long as it hasn't been overwritten or damaged.
+* When a file is deleted, the filesystem removes the entry from the file table or its equivalent. This means the data is still on the disk as long as it hasn't been overwritten or damaged.
 
 * A disk image or disk image file is a bitwise copy of a disk drive.
 
@@ -957,7 +957,7 @@ Disk Image and Memory Capture -
 
 * Using a disk image, the entire drive can be scanned (manually or using tools for automating).
 
-    * Autopsy is one tool that can be used to scan disk image.
+    * Autopsy is one tool that can be used to scan disk images.
 
 #### Windows Filesystem Forensics
 
@@ -969,7 +969,7 @@ Disk Image and Memory Capture -
 
 * In Windows 10, there was a SQLite db called the Windows 10 Timeline that stored information on last executed programs. It is stored at "C:\Users\\\<User>\AppData\Local\ConnectedDevicesPlatform\\\<folder>\ActivitiesCache.db". There is also an EZ Tools tool for this.
 
-* Windows Jump Lists - Meant to help users get to their recently used files from the taskbar by right-clicking an application and viewing it's recently used files. The data is stored in "C:\Users\\\<User>\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations". Again, there is an EZ Tools tool for this.
+* Windows Jump Lists - Meant to help users get to their recently used files from the taskbar by right-clicking an application and viewing its recently used files. The data is stored in "C:\Users\\\<User>\AppData\Roaming\Microsoft\Windows\Recent\AutomaticDestinations". Again, there is an EZ Tools tool for this.
 
 * Shortcut Files - Windows makes shortcut files for every file opened both locally and remotely which contain data like opening times and file paths. Again, there's an EZ Tools for it.
 
@@ -995,13 +995,13 @@ Disk Image and Memory Capture -
 
     * OS-Release - /etc/os-release
 
-    * Accounts - /etc/passwd contains entries with 7 colon-seperated fields which contain username, password info, uid, gid, description, home dir info, and default shell. User created user accounts have uids of 1000+.
+    * Accounts - /etc/passwd contains entries with 7 colon-separated fields which contain username, password info, uid, gid, description, home dir info, and default shell. User created user accounts have uids of 1000+.
     
         * /etc/shadow may also contain password information for accounts.
 
     * Groups - /etc/group
 
-    * Sudoers - Users may only elevate priviliges using sudo if present in the sudoers file /etc/sudoers
+    * Sudoers - Users may only elevate privileges using sudo if present in the sudoers file /etc/sudoers
 
     * Login Info - In /var/log/, the btmp file contains info about failed logins and the wtmp file contains data about logins. These are binary files read using `last`.
 
@@ -1031,7 +1031,7 @@ Disk Image and Memory Capture -
 
 * ext4 uses a unit called Blocks which is a group of sectors. The number of sectors must be an integral (integer) power of 2. Blocks are grouped into Block Groups. (From what I can tell the Block--rather a level of abstraction of many of them--is the functional equivalent of the FAT in the Windows FSs)
 
-* Index Nodes known is inodes store all the metadata about files. The inode table is a linear array of inodes.
+* Index Nodes known as inodes store all the metadata about files. The inode table is a linear array of inodes.
 
 * ext4 fs splits the fs into a series of block groups and tries hard to keep files in the same block which reduces seek times.
 
@@ -1081,7 +1081,7 @@ Disk Image and Memory Capture -
 
 * Redline is an open-source windows app intended to give a high-level view of memory analysis through a nice GUI.
 
-* Redline provides the ability to capture and analyze various amounts of the disk/memory depends on the operating system.
+* Redline provides the ability to capture and analyze various amounts of the disk/memory depending on the operating system.
 
 * IOC files - They are basically just plaintext files containing indicators of compromise which are stored in .ioc files. They can be modified and shared with the security community.
 
@@ -1136,7 +1136,7 @@ Disk Image and Memory Capture -
 
     * Most of these tools will output a .raw file.
 
-    * Grabbing this information from a VM is generally done by collecting a file on the host machine. Depending on the hyperviser the filetype/extension may differ -
+    * Grabbing this information from a VM is generally done by collecting a file on the host machine. Depending on the hypervisor the filetype/extension may differ -
 
         * Hyper-V (wsl uses this) - .bin
         * VirtualBox - .sav (partial) VolatilityFoundation has a wiki page on getting a full dump in the Volatility GitHub repo
@@ -1149,7 +1149,7 @@ Disk Image and Memory Capture -
 
 * `pslist`, `pstree`
 
-* `psscan` - Rather than a regular pslist, this searches for data structures resembling _EPROCESS. This can find hiding processes than unlinked themselves from the pslist, but also can return false positives.
+* `psscan` - Rather than a regular pslist, this searches for data structures resembling _EPROCESS. This can find hiding processes then unlinked themselves from the pslist, but also can return false positives.
 
 * `netstat` - If this is too unstable, there are other tools to help extract PCAPs from memory dumps such as bulk_extractor.
 
@@ -1211,7 +1211,7 @@ Disk Image and Memory Capture -
 
     * VQL lets you package queries into mini-programs called Artifacts which are just structured YAML files containing a query with a name attached to it. This allows searching for and running queries by name.
 
-    * Like most query language it is syntactically similar to others, specifically SQL.
+    * Like most query languages it is syntactically similar to others, specifically SQL.
 
 * The Velociraptor site has an Artifact Exchange where you can share and search for VQL artifacts.
 
@@ -1243,9 +1243,9 @@ Disk Image and Memory Capture -
 
 * Administrators can create an organization on the platform and organize their personnel.
 
-* Traffic Light Protocol (TLP) - Set of designations to ensure approriate access to sensitive information. There are colors which indicate a scale of full disclosure / open access (white) to no disclosure / restricted access (red). For more information look to CISA.
+* Traffic Light Protocol (TLP) - Set of designations to ensure appropriate access to sensitive information. There are colors which indicate a scale of full disclosure / open access (white) to no disclosure / restricted access (red). For more information look to CISA.
 
-* Permissable Actions Protocol (PAP) - Used to indicate what can be done with information, if an attacker can detect the current state of analysis, or defensive actions that are in place. It uses a color scheme similar to TLP. For more information look to MISP.
+* Permissible Actions Protocol (PAP) - Used to indicate what can be done with information, if an attacker can detect the current state of analysis, or defensive actions that are in place. It uses a color scheme similar to TLP. For more information look to MISP.
 
 ---
 
@@ -1255,7 +1255,7 @@ Disk Image and Memory Capture -
 
     * Hardware came many centuries ago from putting the adjective "hard" and the noun "ware"- meaning an article of merchandise or manufactured good- together. Then when computers were invented software was created in the same way. Since then there have been many names derivative of software in the same way that malware is.
 
-    * Thus any software with malicious purpose can be classified as malware. There are categorisations of malware made based on behaviour.
+    * Thus any software with a malicious purpose can be classified as malware. There are categorisations of malware made based on behavior.
 
 * Malware is inherently dangerous. Precautions to be taken before analyzing malware include -
 
@@ -1269,7 +1269,7 @@ Disk Image and Memory Capture -
     
     * Ensure all possible connections to the internet are severed. If an internet connection is absolutely necessary it must be closely monitored.
 
-    * Always ensure a clean state after analysis. This could be reverted a VM to a clean state or if for some reason you had to run on a host system, then wiping and reinstalling everything.
+    * Always ensure a clean state after analysis. This could be reverting a VM to a clean state or if for some reason you had to run on a host system, then wiping and reinstalling everything.
 
 * There are 2 main categories of malware analysis techniques -
 
@@ -1293,7 +1293,7 @@ Disk Image and Memory Capture -
 
     * Common hashes for malware identification including md5, sha1, and sha256 can be retrieved using the commands `md5sum`, `sha1sum`, `sha256sum` respectively.
 
-    * Antivirus and VirusTotal - Searching the hash from the previous point or scanning the file with an AV (Antivirus) can provide useful information. Uploading samples can help too, but should only be done with high condifence that this will not result in compromise of any systems or information.
+    * Antivirus and VirusTotal - Searching the hash from the previous point or scanning the file with an AV (Antivirus) can provide useful information. Uploading samples can help too, but should only be done with high confidence that this will not result in compromise of any systems or information.
 
     * The PE File Header - The PE File Header contains metadata about the Portable Executable file. The PE format is for executables, object code, DLLS, and more which are used in 32 and 64 bit Windows systems. These are common in malware analysis.
 
@@ -1311,7 +1311,7 @@ Disk Image and Memory Capture -
 
     * For malware analysis considerations in constructing a sandbox include -
 
-        * A VM that mimcs the target environment. The VM requires the ability to take snapshots and revert to their states.
+        * A VM that mimics the target environment. The VM requires the ability to take snapshots and revert to their states.
 
         * OS and Network monitoring tools/software.
 
@@ -1319,7 +1319,7 @@ Disk Image and Memory Capture -
 
         * A way to move analysis files, logs, and malware samples to and from the VM without compromising the host or anything else.
 
-    * Building a sandbox from scratch is most often not necessary. It is often faster/easier to set up and open-source sandbox. They provide a framework for performing basic dynamic analysis and are customizable.
+    * Building a sandbox from scratch is most often not necessary. It is often faster/easier to set up an open-source sandbox. They provide a framework for performing basic dynamic analysis and are customizable.
 
         * Some open-source sandboxes include -
 
@@ -1362,5 +1362,190 @@ Disk Image and Memory Capture -
         * VM detection - Since sandboxes run on VMs, if malware detects it is running on a VM then no malicious code runs. VMs leave artifacts such as certain drivers or files and if those artifacts are found then the system is a VM.
 
             * There are also VM *escape* vectors including vectors through the host-vm networking relationship and RAM.
+
+---
+---
+
+<br/>
+
+## Phishing
+
+### Phishing/Email Analysis Fundamentals
+
+* An email address consists of `<user mailbox/username>@<domain>`.
+
+* Email protocols include -
+
+    * Simple Mail Transfer Protocol (SMTP) - Handles the sending of emails. Default ports 25, 465, 587.
+
+    * Post Office Protocol (POP3) - Transfer of email between client and mail server. Emails are downloaded/stored on a single device including emails sent. The emails can only be accessed from this device and by default all messages are deleted from the server once the device has them(unless configured not to do this). Default ports 110, 995.
+
+    * Internet Message Access Protocol (IMAP) - Transfer of email between client and mail server. Emails are stored on the server including sent emails and multiple devices can download them. Messages can be synced across devices. Default ports 143, 993.
+
+* The email process flow - `Email Client -> SMTP -> DNS -> SMTP -> IMAP/POP3 -> Email Client`
+
+    * Email client wants to send an email.
+
+    * SMTP server queries DNS server for recipient domain. The DNS server responds with the info.
+
+    * SMTP server sends the email to the recipient's mailbox at their domain. The email is relayed through numerous SMTP servers until it reaches the destination SMTP server.
+
+    * Recipient SMTP server sends the email to IMAP/POP3 server.
+
+    * Recipient email client queries the local IMAP/POP3 server.
+
+    * If it's an IMAP server the email is copied to the client device. If it's a POP3 server it is downloaded to the client device.
+
+* A Message Transfer Agent (MTA) is software running on a mail server that transfers emails between MTAs and MUAs/LDAs (Local Delivery Agent). A Mail User Agent (MUA) is the mail client that is used to read/write/send emails.
+
+* Emails consist of the header (meta info) and the body (text/html). Email format syntax is Internet Message Format (IMF). Email files have the extension `.eml`.
+
+* To view all of the information in an email use the `show raw`/`show original` option in the email client. You can also `view source`. The wording may be different depending on the client.
+
+* MIME (Multipurpose Internet Mail Extensions) is a standard that extends the format of emails to support non-ASCII characters and attachments of different file types. MIME type is like a file type.
+
+* Social Engineering is the manipulation of individuals into doing something that will give access to private information or systems.
+
+* Phishing - Sending fraudulent messages- normally emails- appearing/claiming to be from a reputable source in order to convince the recipient to give access to private systems or information.
+
+    * Types of phishing include -
+
+        * Spear Phishing - phishing with a specific target.
+
+        * Whaling - Spear phishing high-level individuals such as CEOs, CFO, CTOs, etc.
+
+        * Smishing - Phishing through text messages (SMS) on mobile phones.
+
+        * Vishing - Phishing over voice calls.
+
+* Spam - To spam means to send the same message indiscriminately in large volumes. There is a variant known as Malspam in which the spam contains malware.
+
+* Social Engineering attacks- especially phishing- are an extremely important attack vector. They can bypass all security precautions built into systems by defenders.
+
+* Email spoofing is when the sender address is spoofed and looks like someone else, usually someone important or trustworthy.
+
+    * By default most of the information in an email is unchecked. Because this includes header information, the headers can be changed, particularly the FROM header. Generally the IP address of the sender can still be found in other headers, but that is unlikely to be checked by recipients and may also lead to a VPN/proxy/et cetera.
+
+    * There are other forms of `spoofing` including SMS.
+
+* Business Email Compromise (BEC) is when an adversary gains access to or control over an employee email and uses it to phish other employees and compromise the network/systems/company further.
+
+---
+
+### Phishing Emails in Action
+
+* Common techniques to improve chances of phishing success include -
+
+    * Address spoofing
+
+    * URL shortening
+
+    * HTML that looks like the real company sent it
+
+* Common phishing indicators include -
+
+    * Unfamiliar or gibberish addresses
+
+    * Information mismatch. Sender address and sender details/name for instance
+
+    * Emails regarding something that you didn't do
+
+    * Links- especially with strange or shortened URLs
+
+    * Poor grammar/spelling
+
+    * BCC (Blind Carbon Copy) recipient
+
+* Spy Pixel / Tracking Pixel - An HTML page contains an img tag with a link to a certain image. This image is deliberately small and often transparent so the user has no idea it exists unless they look very hard through the source code or network traffic. Because the image gets downloaded when the site/page/email/etc. is loaded/opened, the tracker gets information. The amount of information can increase with variables added to the img download link. `<tracker>.<domain>/<pixel img>?id=<id>&screenSize=<dimensions>&browser=<browser>`
+
+---
+
+### Phishing Analysis Tools
+
+* Important information to extract during email analysis includes -
+
+    * Sender Email & IP Addresses
+
+    * Subject Line
+
+    * Recipient Email Address
+
+    * Reply-To Address if there is one
+
+    * Date & Time
+
+    * Artifacts from the email (e.g. links, attachments, etc.)
+
+* The simplest method/tool is viewing the raw email in the email client. This was noted in the first phishing section "Phishing/Email Analysis Fundamentals".
+
+* `Messageheader` from the Google Admin Toolbox is a tool for email header analysis.
+
+* `Message Header Analyzer`
+
+* `MailHeader.org`
+
+* One IP analysis tool is `IPinfo.io`. Some other already discussed IP/URL analysis tools include `urlscan.io` and `talosintelligence.com`
+
+* `URL Extractor` (convertcsv.com/url-extractor.htm) can be used to automatically extract URLs if you don't want to do it manually.
+
+* `Cyberchef` also has an Extract URLs recipe/tool.
+
+* `Thunderbird` is a FOSS email client, personal info manager, news client, RSS, and chat client(including IRC) by Mozilla.
+
+* `PhishTool` is a phishing response tool. It has a free community edition.
+
+    * PhishTool helps automate and/or simplify/hasten the information gathering noted thus far.
+
+---
+
+### Phishing Prevention
+
+* Some defensive actions that can be taken against phishing include -
+
+    * Email Security - SPF (Sender Policy Framework), DKIM (DomainKeys Identified Mail), DMARC (Domain-based Message Authentication, Reporting, and Conformance). All of these are open standards and reside in the DNS.
+
+    * Spam Filters - Flag/block emails based on reputation
+
+    * Email Labels - Label emails from outside sources
+
+    * Blocking Email Address/Domain/URL - White/blacklist or reputation based
+
+    * Attachment Blocking - Based on extension or all attachments
+
+    * Sandboxing Attachments
+
+    * Awareness Training / Internal Phishing Campaigns
+
+* An SPF record is a DNS txt record containing a whitelist of IPs allowed to send email from a domain. The SPF record syntax is -
+
+    * `v=spf1 <ip4/ip6>:<ipAddr> include:<domain> <<~/-/+>all>`
+
+        * When a rule gets a hit the qualifier is used. They are: + means pass, - means fail, ~ means soft fail, and ? means neutral.
+
+            * -all means the domain sends no mail
+
+            * +all means any and all IPs can send mail for this domain.
+
+            * mx:   ~all means that all IPs that match the DNS record for the MX (mail exchange) server provided in the `<mx:>` option are allowed to send mail for the domain.
+
+* DKIM uses public key cryptography for emails. The DKIM record syntax is -
+
+    * `v=DKIM1; k=<keytype/algorithm>; p=<publicKey>`
+
+* DMARC uses alignment to tie the SPF and DKIM results to the content of an email. The FROM header must align with the SPF and DKIM outputs in order to pass. The DMARC record syntax is -
+
+    * `v=DMARC1 p=<policy> rua=<dataSendLocation>`
+
+        * p=none means the policy is Monitoring which will not impact mail flow. p=quarantine means the Quarantine policy is being used which puts messages that fail into spam. p=reject means the policy is Reject which does not send failing messages.
+
+        * rua is where aggregate data reports on domain traffic are sent.
+
+* In all of these dns records the `v` argument is the standard being used.
+
+* DNS records can be looked up- including these. One tool for this is `MxToolbox`.
+
+* S/MIME is Secure MIME. It uses public key cryptography to ensure data integrity and non-repudiation.
+
+* SMTP can be used for tunneling.
 
 ---
