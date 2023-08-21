@@ -2,9 +2,9 @@
 
 ---
 
-Tags: Windows, Active Directory
+Tags: Windows, Active Directory, ASREProasting
 
-Tools: NMAP, enum4linux, kerbrute
+Tools: NMAP, enum4linux, kerbrute, impacket, smbclient, evil-winrm
 
 Process:
 
@@ -18,10 +18,14 @@ Process:
 
 * I needed to add the `<target ip>     spookysec.local` to /etc/hosts
 
-* Now I can ASREProast the users I've found
+* Now I can use impacket's `GetNPUsers` to ASREProast the users I've found
 
 * I used John the Ripper to crack the ASREProasted account
 
 * Using smbclient I listed the shares and then accessed them. One share had some encoded creds and I decoded them with cyberchef.
 
-* 
+* Next I used Impacket's secretsDump `<path>/secretsdump.py <domain>/<user>:<pass>@<domain>` to dump more credentials where user:pass are taken from the backup creds
+
+* Using evil-winrm and the NTLM hash for Administrator user, I logged in to the target.
+
+* Grab the flags!
