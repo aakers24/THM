@@ -25,3 +25,15 @@ Process:
 * The encoded/decoded (not brainfuck) code seems to follow python syntax so I'm trying to get a reverse shell to execute by encoding python payloads into brainfuck on dcode.fr and running the brainfuck code on the site.
 
     * One other thought I have is that I could try to curl/wget a shell onto the box and then navigate to `<url>/<revshell>`.
+
+    * My initial method worked. I was including the "python3" portion of the command when I obviously shouldn't have because it had to already be running a python instance to execute the code.
+
+* Now I have a shell and a user flag!
+
+* I'm beginning to enum privesc vectors. I start with the standards such as `sudo -l`, `id`, find suid binaries, etc. and find nothing manually.
+
+    * Next I'll upload linpeas and see if that shows me anything. I host a temporary python webserver on my kali machine, wget it onto the target, chmod +x it, and run it.
+
+* I'll follow an exploit from an article on github to abuse the openssl suid cap for privesc.
+
+* This worked and I'm root now! Grab the flag!
