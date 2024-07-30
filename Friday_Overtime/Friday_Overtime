@@ -1,0 +1,25 @@
+## Friday Overtime
+
+---
+
+Tags: Blue Team, CTI, Defense, OSINT
+
+Tools: Linux Archive Manager, Google, Cyberchef
+
+Process:
+
+* The first question was answered in the ticket.
+
+* After extracting the files from the archive using the built-in Linux File System Archive Manager, using the `sha1sum` command on the file will yield the answer to the next question.
+
+* The rest of the questions I answered by just googling for the right things.
+
+    * The name of the framework is present without even moving the page when you google for all of the names of the files together.
+
+    * One of the results on the first page has the Mitre Att&ck Technique number for the file.
+
+    * It also has the URL and throwing that into cyberchef to defand it gives this answer.
+
+    * This page also has the IP address and when it is thrown into cyberchef it gives the next answer.
+
+    * Putting the IP from the previous answer into VirusTotal gives a result that targetted androids on the date provided. Clicking on that entry, the sha1 hash is present on the page.
