@@ -1,0 +1,37 @@
+## New Hire Old Artifacts
+
+---
+
+Tags: Blue Team, Log Analysis, Defense, OSINT
+
+Tools: Splunk, Sysmon, Google, Cyberchef, VirusTotal
+
+Process:
+
+* This whole room takes place in Splunk.
+
+* I start with a search for `*`.
+
+    * I see there is only 1 index so I select that.
+
+    * I also select the sysmon log as the source and use that for the entirety of the room.
+
+* To find the binary/path in the first question I searched for sysmon EventCode 1 which indicates a process starting and looked for suspicious entries. `<source> EventCode=1 | stats values(<Field>)` I believe the field I used was CommandLine.
+
+* I used Google/OSINT/VirusTotal to find that malware and then found the company name that way.
+
+* In doing the last bullet, I noticed a filename-- Palit-- that I had seen in the files when I was searching for the previous binary. Searching for that with just a basic plugging in the name (`<All Other stuff> <Item to search for>`) I found the other name.
+
+* To find the IP I just added the EventCode for network connections.
+
+* For this, I did the same thing as the IP except used the Registry change EventCode.
+
+* To find the killed/deleted processes/binaries I did a search for `<Source> taskkill`. I also used `| stats values(<Field>)` and cross correlated with a search for File Delete EventCodes, but ultimately it was that first search that gave the answer.
+
+* To find the powershell session/commands I searched for `<source> powershell defender`.
+
+    * Either directly in this search or some derivative (like using a stat field filter or adding a search term) gave me the next answer.
+
+* I found this other binary partly because I had scoped it out earlier, but just searched for `<soruce> AppData` with an EventCode similar to the earlier searches.
+
+* To find the binaries, I used the answer to the last question, searched for it along with the EventCode for Image Load, and then stat filtered for ImageLoaded and I added .dll although that may have been overkill. I just looked through these and chose the correct ones.
