@@ -1,16 +1,5 @@
 ## THM
 
-!!!
-
-I am making this private because I am posting my notes for the AoC2024 Side Quest in this repository and don't want to spoil it for others or not be in accordance with the rules. So note to self:
-
-MAKE THIS REPOSITORY PUBLIC AGAIN AFTERWARDS
-
-!!!
-
-
----
-
 The goal of the contents of this repository is to document my process of solving boxes from this point on.
 In doing so, I hope to create a valuable reference for myself that I can use in future red and blue team cybersecurity work as well as help cement the processes, tools, and other various information in my mind.
 
